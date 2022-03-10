@@ -1,0 +1,4 @@
+#!/bin/sh
+lli=${LLVMINTERP-lli}
+exec $lli \
+    /home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution2/.autopilot/db/a.o.bc ${1+"$@"}
