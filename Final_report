@@ -1,0 +1,137 @@
+Part B
+1)
+    +-------+-------+-------+-------+---------+
+    |    Latency    |    Interval   | Pipeline|
+    |  min  |  max  |  min  |  max  |   Type  |
+    +-------+-------+-------+-------+---------+
+    |  13810|  13810|  13811|  13811|   none  |
+    +-------+-------+-------+-------+---------+
+2)
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      -|       -|      -|
+|Expression       |        -|      -|       0|  26103|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        0|     10|     732|   1462|
+|Memory           |       16|      -|       0|      0|
+|Multiplexer      |        -|      -|       -|   4906|
+|Register         |        -|      -|   24597|   6496|
++-----------------+---------+-------+--------+-------+
+|Total            |       16|     10|   25329|  38967|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+
+|Utilization (%)  |        5|      4|      23|     73|
++-----------------+---------+-------+--------+-------+
+
+3)
+    +------------------------------+----------------------------+---------+-------+-----+-----+
+    |           Instance           |           Module           | BRAM_18K| DSP48E|  FF | LUT |
+    +------------------------------+----------------------------+---------+-------+-----+-----+
+    |mmult_hw_CONTROL_BUS_s_axi_U  |mmult_hw_CONTROL_BUS_s_axi  |        0|      0|   36|   40|
+    |mmult_hw_fadd_32nbkb_U1       |mmult_hw_fadd_32nbkb        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32nbkb_U2       |mmult_hw_fadd_32nbkb        |        0|      2|  205|  390|
+    |mmult_hw_fmul_32ncud_U3       |mmult_hw_fmul_32ncud        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32ncud_U4       |mmult_hw_fmul_32ncud        |        0|      3|  143|  321|
+    +------------------------------+----------------------------+---------+-------+-----+-----+
+    |Total                         |                           5|        0|     10|  732| 1462|
+    +------------------------------+----------------------------+---------+-------+-----+-----+
+
+4)
+        +--------------+-------+-------+----------+-----------+-----------+------+----------+
+        |              |    Latency    | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name  |  min  |  max  |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------+-------+-------+----------+-----------+-----------+------+----------+
+        |- LOAD_OFF_1  |      5|      5|         2|          1|          1|     5|    yes   |
+        |- LOAD_W_1    |   1310|   1310|       131|          -|          -|    10|    no    |
+        | + LOAD_W_2   |    128|    128|         2|          1|          1|   128|    yes   |
+        |- LOAD_I_1    |   1048|   1048|       131|          -|          -|     8|    no    |
+        | + LOAD_I_2   |    128|    128|         2|          1|          1|   128|    yes   |
+        |- L1_L2       |  11398|  11398|      1287|        128|          1|    80|    yes   |
+        |- STORE_O_1   |     41|     41|         7|          5|          1|     8|    yes   |
+        +--------------+-------+-------+----------+-----------+-----------+------+----------+
+
+Part C
+1)
+    +------+------+------+------+---------+
+    |   Latency   |   Interval  | Pipeline|
+    |  min |  max |  min |  max |   Type  |
+    +------+------+------+------+---------+
+    |  4962|  4962|  4963|  4963|   none  |
+    +------+------+------+------+---------+
+
+2)
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      -|       -|      -|
+|Expression       |        -|      -|       0|   3375|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        0|     80|    5604|  11416|
+|Memory           |       36|      -|       0|      0|
+|Multiplexer      |        -|      -|       -|   6437|
+|Register         |        -|      -|   32341|  14129|
++-----------------+---------+-------+--------+-------+
+|Total            |       36|     80|   37945|  35357|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |       12|     36|      35|     66|
++-----------------+---------+-------+--------+-------+
+
+3)
+    +------------------------------+----------------------------+---------+-------+-----+-----+
+    |           Instance           |           Module           | BRAM_18K| DSP48E|  FF | LUT |
+    +------------------------------+----------------------------+---------+-------+-----+-----+
+    |mmult_hw_CONTROL_BUS_s_axi_U  |mmult_hw_CONTROL_BUS_s_axi  |        0|      0|   36|   40|
+    |mmult_hw_fadd_32njbC_U1       |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U2       |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U3       |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U4       |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U5       |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U6       |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U7       |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U8       |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U9       |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U10      |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U11      |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U12      |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U13      |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U14      |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U15      |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fadd_32njbC_U16      |mmult_hw_fadd_32njbC        |        0|      2|  205|  390|
+    |mmult_hw_fmul_32nkbM_U17      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U18      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U19      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U20      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U21      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U22      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U23      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U24      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U25      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U26      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U27      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U28      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U29      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U30      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U31      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    |mmult_hw_fmul_32nkbM_U32      |mmult_hw_fmul_32nkbM        |        0|      3|  143|  321|
+    +------------------------------+----------------------------+---------+-------+-----+-----+
+    |Total                         |                          33|        0|     80| 5604|11416|
+    +------------------------------+----------------------------+---------+-------+-----+-----+
+
+4)
+        +--------------+------+------+----------+-----------+-----------+------+----------+
+        |              |   Latency   | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name  |  min |  max |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------+------+------+----------+-----------+-----------+------+----------+
+        |- LOAD_OFF_1  |     5|     5|         2|          1|          1|     5|    yes   |
+        |- LOAD_W_1    |  1310|  1310|       131|          -|          -|    10|    no    |
+        | + LOAD_W_2   |   128|   128|         2|          1|          1|   128|    yes   |
+        |- LOAD_I_1    |  1048|  1048|       131|          -|          -|     8|    no    |
+        | + LOAD_I_2   |   128|   128|         2|          1|          1|   128|    yes   |
+        |- L1_L2       |  2550|  2550|      1287|         16|          1|    80|    yes   |
+        |- STORE_O_1   |    41|    41|         7|          5|          1|     8|    yes   |
+        +--------------+------+------+----------+-----------+-----------+------+----------+
