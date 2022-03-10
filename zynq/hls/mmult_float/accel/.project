@@ -52,6 +52,11 @@
 			<location>/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution2/.tcls</location>
 		</link>
 		<link>
+			<name>solution3/constraints</name>
+			<type>2</type>
+			<location>/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution3/.tcls</location>
+		</link>
+		<link>
 			<name>source/mmult_float.cpp</name>
 			<type>1</type>
 			<location>/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/mmult_float.cpp</location>
@@ -105,6 +110,21 @@
 			<name>solution2/constraints/script.tcl</name>
 			<type>1</type>
 			<location>/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution2/script.tcl</location>
+		</link>
+		<link>
+			<name>solution3/constraints/.xml.directive</name>
+			<type>1</type>
+			<location>/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution3/solution3.directive</location>
+		</link>
+		<link>
+			<name>solution3/constraints/directives.tcl</name>
+			<type>1</type>
+			<location>/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution3/directives.tcl</location>
+		</link>
+		<link>
+			<name>solution3/constraints/script.tcl</name>
+			<type>1</type>
+			<location>/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution3/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>
