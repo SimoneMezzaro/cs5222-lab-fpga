@@ -1,13 +1,16 @@
-<AutoPilot:project xmlns:AutoPilot="com.autoesl.autopilot.project" projectType="C/C++" name="accel" top="mmult_hw">
-    <files>
+<project xmlns="com.autoesl.autopilot.project" name="accel" top="mmult_hw">
+    <includePaths/>
+    <libraryPaths/>
+    <Simulation argv="">
+        <SimFlow name="csim" ldflags="" mflags="" clean="true"/>
+    </Simulation>
+    <files xmlns="">
         <file name="../../mmult_test.cpp" sc="0" tb="1" cflags=" "/>
         <file name="./mmult_float.cpp" sc="0" tb="false" cflags=""/>
     </files>
-    <solutions>
-        <solution name="solution0" status=""/>
+    <solutions xmlns="">
+        <solution name="solution0" status="inactive"/>
+        <solution name="solution1" status="active"/>
     </solutions>
-    <Simulation argv="">
-        <SimFlow name="csim" setup="false" optimizeCompile="false" clean="true" ldflags="" mflags=""/>
-    </Simulation>
-</AutoPilot:project>
+</project>
 

@@ -1,0 +1,11 @@
+================================================================
+  Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC
+  Version 2017.1
+  Build 1846317 on Fri Apr 14 19:19:38 MDT 2017
+  Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
+================================================================
+INFO: [HLS 200-10] Running '/home/simone/Xilinx/Vivado_HLS/2017.1/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'simone' on host 'simone-vivado' (Linux_x86_64 version 4.4.0-210-generic) on Thu Mar 10 20:07:34 +08 2022
+INFO: [HLS 200-10] On os Ubuntu 16.04.7 LTS
+INFO: [HLS 200-10] In directory '/home/simone/Desktop/cs5222-lab-fpga/zynq/hls'
+ERROR: [HLS 200-70] Directory 'mmult_float' is not a Vivado HLS project.

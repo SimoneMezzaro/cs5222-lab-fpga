@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1)&#xA;   between axis write on port 'out_stream_data_V' (./mmult_float.cpp:83) and axis write on port 'out_stream_data_V' (./mmult_float.cpp:83)." projectName="accel" solutionName="solution1" date="2022-03-10T22:32:16.686+0800" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1)&#xA;   between axis write on port 'out_stream_data_V' (./mmult_float.cpp:83) and axis write on port 'out_stream_data_V' (./mmult_float.cpp:83)." projectName="accel" solutionName="solution1" date="2022-03-10T22:32:16.683+0800" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1)&#xA;   between axis write on port 'out_stream_data_V' (./mmult_float.cpp:83) and axis write on port 'out_stream_data_V' (./mmult_float.cpp:83)." projectName="accel" solutionName="solution1" date="2022-03-10T22:32:16.668+0800" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)&#xA;   between axis write on port 'out_stream_data_V' (./mmult_float.cpp:83) and axis write on port 'out_stream_data_V' (./mmult_float.cpp:83)." projectName="accel" solutionName="solution1" date="2022-03-10T22:32:16.661+0800" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('in_buf_load_2', ./mmult_float.cpp:72) on array 'in_buf', ./mmult_float.cpp:30 due to limited memory ports." projectName="accel" solutionName="solution1" date="2022-03-10T22:32:15.717+0800" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] the outer loop is not a perfect loop." projectName="accel" solutionName="solution1" date="2022-03-10T22:32:00.179+0800" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOAD_I_1' (./mmult_float.cpp:56:78) in function 'mmult_hw' : " projectName="accel" solutionName="solution1" date="2022-03-10T22:31:59.739+0800" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] the outer loop is not a perfect loop." projectName="accel" solutionName="solution1" date="2022-03-10T22:31:57.757+0800" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOAD_W_1' (./mmult_float.cpp:45:42) in function 'mmult_hw' : " projectName="accel" solutionName="solution1" date="2022-03-10T22:31:57.753+0800" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-1103] Ignored data pack directive on non-struct variable 'in_stream.data.V' (./mmult_float.cpp:8)." projectName="accel" solutionName="solution1" date="2022-03-10T22:31:56.061+0800" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-1103] Ignored data pack directive on non-struct variable 'out_stream.data.V' (./mmult_float.cpp:8)." projectName="accel" solutionName="solution1" date="2022-03-10T22:31:56.036+0800" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>
