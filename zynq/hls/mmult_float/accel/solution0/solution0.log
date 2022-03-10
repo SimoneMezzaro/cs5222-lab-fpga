@@ -9,20 +9,34 @@ INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xc7z020clg484-1'
 INFO: [HLS 200-10] Analyzing design file './mmult_float.cpp' ... 
 INFO: [HLS 200-10] Validating synthesis directives ...
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:19 ; elapsed = 00:00:14 . Memory (MB): peak = 348.098 ; gain = 12.586 ; free physical = 2590 ; free virtual = 12870
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:20 ; elapsed = 00:00:15 . Memory (MB): peak = 348.098 ; gain = 12.586 ; free physical = 2587 ; free virtual = 12870
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:17 ; elapsed = 00:00:14 . Memory (MB): peak = 348.102 ; gain = 12.586 ; free physical = 2681 ; free virtual = 12974
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:17 ; elapsed = 00:00:14 . Memory (MB): peak = 348.102 ; gain = 12.586 ; free physical = 2677 ; free virtual = 12973
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [XFORM 203-603] Inlining function 'pop_stream' into 'mmult_hw' (./mmult_float.cpp:59).
+INFO: [XFORM 203-603] Inlining function 'pop_stream' into 'mmult_hw' (./mmult_float.cpp:61).
 INFO: [XFORM 203-603] Inlining function 'pop_stream' into 'mmult_hw' (./mmult_float.cpp:48).
 INFO: [XFORM 203-603] Inlining function 'pop_stream' into 'mmult_hw' (./mmult_float.cpp:39).
-INFO: [XFORM 203-603] Inlining function 'push_stream' into 'mmult_hw' (./mmult_float.cpp:84).
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:21 ; elapsed = 00:00:16 . Memory (MB): peak = 476.094 ; gain = 140.582 ; free physical = 2547 ; free virtual = 12832
+INFO: [XFORM 203-603] Inlining function 'push_stream' into 'mmult_hw' (./mmult_float.cpp:86).
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:17 ; elapsed = 00:00:14 . Memory (MB): peak = 348.406 ; gain = 12.891 ; free physical = 2669 ; free virtual = 12968
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:21 ; elapsed = 00:00:18 . Memory (MB): peak = 476.094 ; gain = 140.582 ; free physical = 2521 ; free virtual = 12807
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 348.406 ; gain = 12.891 ; free physical = 2664 ; free virtual = 12963
 WARNING: [XFORM 203-1103] Ignored data pack directive on non-struct variable 'out_stream.data.V' (./mmult_float.cpp:8).
 WARNING: [XFORM 203-1103] Ignored data pack directive on non-struct variable 'in_stream.data.V' (./mmult_float.cpp:8).
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:24 ; elapsed = 00:00:20 . Memory (MB): peak = 476.094 ; gain = 140.582 ; free physical = 2510 ; free virtual = 12799
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:25 ; elapsed = 00:00:21 . Memory (MB): peak = 476.094 ; gain = 140.582 ; free physical = 2509 ; free virtual = 12799
+WARNING: [XFORM 203-124] Array  'in_stream.data.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'in_stream.keep.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'in_stream.strb.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'in_stream.user.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'in_stream.last.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'in_stream.id.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'in_stream.dest.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'out_stream.data.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'out_stream.keep.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'out_stream.strb.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'out_stream.user.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'out_stream.last.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'out_stream.id.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'out_stream.dest.V' (./mmult_float.cpp:8): may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 476.098 ; gain = 140.582 ; free physical = 2635 ; free virtual = 12937
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:18 ; elapsed = 00:00:15 . Memory (MB): peak = 476.098 ; gain = 140.582 ; free physical = 2633 ; free virtual = 12936
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'mmult_hw' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -30,13 +44,13 @@ INFO: [HLS 200-10] -- Implementing module 'mmult_hw'
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 20.8 seconds; current allocated memory: 117.241 MB.
+INFO: [HLS 200-111]  Elapsed time: 15.21 seconds; current allocated memory: 79.879 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 118.140 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 80.781 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'mmult_hw' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -61,13 +75,13 @@ INFO: [SYN 201-210] Renamed object name 'mmult_hw_fmul_32ns_32ns_32_4_max_dsp' t
 INFO: [RTGEN 206-100] Generating core module 'mmult_hw_fadd_32nbkb': 1 instance(s).
 INFO: [RTGEN 206-100] Generating core module 'mmult_hw_fmul_32ncud': 1 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'mmult_hw'.
-INFO: [HLS 200-111]  Elapsed time: 0.12 seconds; current allocated memory: 120.400 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.13 seconds; current allocated memory: 83.136 MB.
 INFO: [RTMG 210-278] Implementing memory 'mmult_hw_offset_buf_ram' using block RAMs.
 INFO: [RTMG 210-278] Implementing memory 'mmult_hw_weight_buf_ram' using block RAMs.
 INFO: [RTMG 210-278] Implementing memory 'mmult_hw_in_buf_ram' using block RAMs.
 INFO: [RTMG 210-278] Implementing memory 'mmult_hw_out_buf_ram' using block RAMs.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:26 ; elapsed = 00:00:22 . Memory (MB): peak = 476.094 ; gain = 140.582 ; free physical = 2495 ; free virtual = 12787
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:18 ; elapsed = 00:00:16 . Memory (MB): peak = 476.098 ; gain = 140.582 ; free physical = 2621 ; free virtual = 12927
 INFO: [SYSC 207-301] Generating SystemC RTL for mmult_hw.
 INFO: [VHDL 208-304] Generating VHDL RTL for mmult_hw.
 INFO: [VLOG 209-307] Generating Verilog RTL for mmult_hw.
-INFO: [HLS 200-112] Total elapsed time: 21.61 seconds; peak allocated memory: 120.400 MB.
+INFO: [HLS 200-112] Total elapsed time: 16.11 seconds; peak allocated memory: 83.136 MB.

@@ -9,8 +9,8 @@
 module mmult_hw_in_buf_0_ram (addr0, ce0, d0, we0, q0, addr1, ce1, d1, we1, q1,  clk);
 
 parameter DWIDTH = 32;
-parameter AWIDTH = 13;
-parameter MEM_SIZE = 8192;
+parameter AWIDTH = 12;
+parameter MEM_SIZE = 4096;
 
 input[AWIDTH-1:0] addr0;
 input ce0;
@@ -78,8 +78,8 @@ module mmult_hw_in_buf_0(
     q1);
 
 parameter DataWidth = 32'd32;
-parameter AddressRange = 32'd8192;
-parameter AddressWidth = 32'd13;
+parameter AddressRange = 32'd4096;
+parameter AddressWidth = 32'd12;
 input reset;
 input clk;
 input[AddressWidth - 1:0] address0;

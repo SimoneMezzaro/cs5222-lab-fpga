@@ -310,8 +310,8 @@ set MemName mmult_hw_in_buf_0
 set CoreName ap_simcore_mem
 set PortList { 2 2 }
 set DataWd 32
-set AddrRange 8192
-set AddrWd 13
+set AddrRange 4096
+set AddrWd 12
 set impl_style block
 set TrueReset 0
 set HasInitializer 0
@@ -392,8 +392,8 @@ set MemName mmult_hw_out_buf
 set CoreName ap_simcore_mem
 set PortList { 2 1 }
 set DataWd 32
-set AddrRange 2560
-set AddrWd 12
+set AddrRange 1280
+set AddrWd 11
 set impl_style block
 set TrueReset 0
 set HasInitializer 0

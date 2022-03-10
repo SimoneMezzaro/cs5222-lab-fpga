@@ -42963,6 +42963,7 @@ typedef float T;
 
 
 
+
 // Input/Output Stream Size
 
 
@@ -42979,7 +42980,7 @@ typedef float T;
 typedef ap_axiu<(sizeof(axi_T)*8),4,5,5> AXI_VAL;
 
 // Matrix Multiply prototype
-void mmult_hw (AXI_VAL in_stream[(256 /* TODO: you will tweak this later*/*256/(sizeof(axi_T)/sizeof(T))+(256 +1)*10/(sizeof(axi_T)/sizeof(T)))],AXI_VAL out_stream[(256 /* TODO: you will tweak this later*/*10/(sizeof(axi_T)/sizeof(T)))]);
+void mmult_hw (AXI_VAL in_stream[(2048 /* TODO: you will tweak this later*/*256/(sizeof(axi_T)/sizeof(T))+(256 +1)*10/(sizeof(axi_T)/sizeof(T)))],AXI_VAL out_stream[(2048 /* TODO: you will tweak this later*/*10/(sizeof(axi_T)/sizeof(T)))]);
 
 // AXI stream push and pop
 axi_T pop_stream(AXI_VAL const &e);
@@ -42988,8 +42989,8 @@ AXI_VAL push_stream(axi_T const &v, bool last);
 
 // --------------------------------------------------------------------
 // function to be accelerated in HW wrapped with AXI4-Stream interface
-void mmult_hw (AXI_VAL in_stream[(256 /* TODO: you will tweak this later*/*256/(sizeof(axi_T)/sizeof(T))+(256 +1)*10/(sizeof(axi_T)/sizeof(T)))], AXI_VAL out_stream[(256 /* TODO: you will tweak this later*/*10/(sizeof(axi_T)/sizeof(T)))])
-{_ssdm_SpecArrayDimSize(in_stream,(256 /* TODO: you will tweak this later*/*256/(sizeof(axi_T)/sizeof(T))+(256 +1)*10/(sizeof(axi_T)/sizeof(T))));_ssdm_SpecArrayDimSize(out_stream,(256 /* TODO: you will tweak this later*/*10/(sizeof(axi_T)/sizeof(T))));
+void mmult_hw (AXI_VAL in_stream[(2048 /* TODO: you will tweak this later*/*256/(sizeof(axi_T)/sizeof(T))+(256 +1)*10/(sizeof(axi_T)/sizeof(T)))], AXI_VAL out_stream[(2048 /* TODO: you will tweak this later*/*10/(sizeof(axi_T)/sizeof(T)))])
+{_ssdm_SpecArrayDimSize(in_stream,(2048 /* TODO: you will tweak this later*/*256/(sizeof(axi_T)/sizeof(T))+(256 +1)*10/(sizeof(axi_T)/sizeof(T))));_ssdm_SpecArrayDimSize(out_stream,(2048 /* TODO: you will tweak this later*/*10/(sizeof(axi_T)/sizeof(T))));
 _ssdm_op_SpecInterface(0, "s_axilite", 0, 0, "", 0, 0, "CONTROL_BUS", "", "", 0, 0, 0, 0, "", "");
 _ssdm_op_SpecInterface(in_stream, "axis", 1, 1, "both", 0, 0, "", "", "", 0, 0, 0, 0, "", "");
 _ssdm_op_SpecInterface(out_stream, "axis", 1, 1, "both", 0, 0, "", "", "", 0, 0, 0, 0, "", "");
@@ -42998,7 +42999,7 @@ _ssdm_op_SpecInterface(out_stream, "axis", 1, 1, "both", 0, 0, "", "", "", 0, 0,
  ((10%(sizeof(axi_T)/sizeof(T))==0) ? static_cast<void> (0) : __assert_fail ("CLASSES%WIDTH_RATIO==0", "./mmult_float.cpp", 15, __PRETTY_FUNCTION__));
  ((256%(sizeof(axi_T)/sizeof(T))==0) ? static_cast<void> (0) : __assert_fail ("FEAT%WIDTH_RATIO==0", "./mmult_float.cpp", 16, __PRETTY_FUNCTION__));
  ((256%(sizeof(axi_T)/sizeof(T))==0) ? static_cast<void> (0) : __assert_fail ("FEAT%WIDTH_RATIO==0", "./mmult_float.cpp", 17, __PRETTY_FUNCTION__));
- (((256 /* TODO: you will tweak this later*/*10)%(sizeof(axi_T)/sizeof(T))==0) ? static_cast<void> (0) : __assert_fail ("(BATCH*CLASSES)%WIDTH_RATIO==0", "./mmult_float.cpp", 18, __PRETTY_FUNCTION__));
+ (((2048 /* TODO: you will tweak this later*/*10)%(sizeof(axi_T)/sizeof(T))==0) ? static_cast<void> (0) : __assert_fail ("(BATCH*CLASSES)%WIDTH_RATIO==0", "./mmult_float.cpp", 18, __PRETTY_FUNCTION__));
 
  // Union used for type conversion
  union
@@ -43013,11 +43014,11 @@ _ssdm_op_SpecInterface(out_stream, "axis", 1, 1, "both", 0, 0, "", "", "", 0, 0,
 _ssdm_SpecArrayPartition( weight_buf, 2, "BLOCK", 8, "");
 # 29 "./mmult_float.cpp"
 
- T in_buf[256 /* TODO: you will tweak this later*/][256];
+ T in_buf[128][256];
 _ssdm_SpecArrayPartition( in_buf, 2, "BLOCK", 8, "");
 # 30 "./mmult_float.cpp"
 
- T out_buf[256 /* TODO: you will tweak this later*/][10];
+ T out_buf[128][10];
 
  // Input and output AXI stream indices
  int is_idx = 0;
@@ -43046,46 +43047,49 @@ _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
   }
  }
 
+ // Iterate over tiles
+ LT: for (int t = 0; t < 2048 /* TODO: you will tweak this later*/; t+=128) {
 
- // Stream in input matrix
- LOAD_I_1: for (int i = 0; i < 256 /* TODO: you will tweak this later*/; i++) {
-  LOAD_I_2: for (int j = 0; j < 256; j+=(sizeof(axi_T)/sizeof(T))) {
+  // Stream in input tile
+  LOAD_I_1: for (int i = 0; i < 128; i++) {
+   LOAD_I_2: for (int j = 0; j < 256; j+=(sizeof(axi_T)/sizeof(T))) {
 _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
-# 57 "./mmult_float.cpp"
+# 59 "./mmult_float.cpp"
 
-   // Pop AXI data packet
-   converter.packet = pop_stream(in_stream[is_idx++]);
-   in_buf[i][j+0] = converter.val.f0;
-   in_buf[i][j+1] = converter.val.f1;
-  }
- }
-
- // Iterate over batch elements
- L1: for (int i = 0; i < 256 /* TODO: you will tweak this later*/; i++) {
-  // Iterate over output classes
-  L2: for (int j = 0; j < 10; j++) {
-_ssdm_op_SpecPipeline(1, 1, 1, 0, "");
-# 68 "./mmult_float.cpp"
-
-   // Perform the dot product
-   T tmp = offset_buf[j];
-   L3: for(int k = 0; k < 256; k++) {
-    tmp += in_buf[i][k] * weight_buf[j][k];
+    // Pop AXI data packet
+    converter.packet = pop_stream(in_stream[is_idx++]);
+    in_buf[i][j+0] = converter.val.f0;
+    in_buf[i][j+1] = converter.val.f1;
    }
-   out_buf[i][j] = tmp;
   }
- }
 
- // Stream out output matrix
- STORE_O_1: for (int i = 0; i < 256 /* TODO: you will tweak this later*/; i++) {
+  // Iterate over batch elements
+  L1: for (int i = 0; i < 128; i++) {
+   // Iterate over output classes
+   L2: for (int j = 0; j < 10; j++) {
 _ssdm_op_SpecPipeline(1, 1, 1, 0, "");
-# 79 "./mmult_float.cpp"
+# 70 "./mmult_float.cpp"
 
-  STORE_O_2: for (int j = 0; j < 10; j+=(sizeof(axi_T)/sizeof(T))) {
-   // Push output element into AXI stream
-   converter.val.f0 = out_buf[i][j+0];
-   converter.val.f1 = out_buf[i][j+1];
-   out_stream[os_idx++] = push_stream(converter.packet, os_idx == ((256 /* TODO: you will tweak this later*/*10/(sizeof(axi_T)/sizeof(T)))));
+    // Perform the dot product
+    T tmp = offset_buf[j];
+    L3: for(int k = 0; k < 256; k++) {
+     tmp += in_buf[i][k] * weight_buf[j][k];
+    }
+    out_buf[i][j] = tmp;
+   }
+  }
+
+  // Stream out output tile
+  STORE_O_1: for (int i = 0; i < 128; i++) {
+_ssdm_op_SpecPipeline(1, 1, 1, 0, "");
+# 81 "./mmult_float.cpp"
+
+   STORE_O_2: for (int j = 0; j < 10; j+=(sizeof(axi_T)/sizeof(T))) {
+    // Push output element into AXI stream
+    converter.val.f0 = out_buf[i][j+0];
+    converter.val.f1 = out_buf[i][j+1];
+    out_stream[os_idx++] = push_stream(converter.packet, os_idx == ((2048 /* TODO: you will tweak this later*/*10/(sizeof(axi_T)/sizeof(T)))));
+   }
   }
  }
 }

@@ -14,8 +14,8 @@ entity mmult_hw_in_buf_0_ram is
     generic(
             mem_type    : string := "block"; 
             dwidth     : integer := 32; 
-            awidth     : integer := 13; 
-            mem_size    : integer := 8192
+            awidth     : integer := 12; 
+            mem_size    : integer := 4096
     ); 
     port (
           addr0     : in std_logic_vector(awidth-1 downto 0); 
@@ -107,8 +107,8 @@ use IEEE.std_logic_1164.all;
 entity mmult_hw_in_buf_0 is
     generic (
         DataWidth : INTEGER := 32;
-        AddressRange : INTEGER := 8192;
-        AddressWidth : INTEGER := 13);
+        AddressRange : INTEGER := 4096;
+        AddressWidth : INTEGER := 12);
     port (
         reset : IN STD_LOGIC;
         clk : IN STD_LOGIC;
