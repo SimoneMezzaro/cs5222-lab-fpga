@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'mmult_hw'
 ================================================================
-* Date:           Thu Mar 10 19:40:54 2022
+* Date:           Fri Mar 11 00:23:53 2022
 
 * Version:        2017.1 (Build 1846317 on Fri Apr 14 19:19:38 MDT 2017)
 * Project:        accel
@@ -25,33 +25,33 @@
 
 + Latency (clock cycles): 
     * Summary: 
-    +--------+--------+--------+--------+---------+
-    |     Latency     |     Interval    | Pipeline|
-    |   min  |   max  |   min  |   max  |   Type  |
-    +--------+--------+--------+--------+---------+
-    |  230331|  230331|  230332|  230332|   none  |
-    +--------+--------+--------+--------+---------+
+    +---------+---------+---------+---------+---------+
+    |      Latency      |      Interval     | Pipeline|
+    |   min   |   max   |   min   |   max   |   Type  |
+    +---------+---------+---------+---------+---------+
+    |  7290147|  7290147|  7290148|  7290148|   none  |
+    +---------+---------+---------+---------+---------+
 
     + Detail: 
         * Instance: 
         N/A
 
         * Loop: 
-        +--------------+--------+--------+----------+-----------+-----------+------+----------+
-        |              |     Latency     | Iteration|  Initiation Interval  | Trip |          |
-        |   Loop Name  |   min  |   max  |  Latency |  achieved |   target  | Count| Pipelined|
-        +--------------+--------+--------+----------+-----------+-----------+------+----------+
-        |- LOAD_OFF_1  |      10|      10|         2|          -|          -|     5|    no    |
-        |- LOAD_W_1    |    2580|    2580|       258|          -|          -|    10|    no    |
-        | + LOAD_W_2   |     256|     256|         2|          -|          -|   128|    no    |
-        |- LOAD_I_1    |    2064|    2064|       258|          -|          -|     8|    no    |
-        | + LOAD_I_2   |     256|     256|         2|          -|          -|   128|    no    |
-        |- L1          |  225536|  225536|     28192|          -|          -|     8|    no    |
-        | + L2         |   28190|   28190|      2819|          -|          -|    10|    no    |
-        |  ++ L3       |    2816|    2816|        11|          -|          -|   256|    no    |
-        |- STORE_O_1   |     136|     136|        17|          -|          -|     8|    no    |
-        | + STORE_O_2  |      15|      15|         3|          -|          -|     5|    no    |
-        +--------------+--------+--------+----------+-----------+-----------+------+----------+
+        +--------------+---------+---------+----------+-----------+-----------+------+----------+
+        |              |      Latency      | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name  |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- LOAD_OFF_1  |       10|       10|         2|          -|          -|     5|    no    |
+        |- LOAD_W_1    |     2580|     2580|       258|          -|          -|    10|    no    |
+        | + LOAD_W_2   |      256|      256|         2|          -|          -|   128|    no    |
+        |- LOAD_I_1    |    66048|    66048|       258|          -|          -|   256|    no    |
+        | + LOAD_I_2   |      256|      256|         2|          -|          -|   128|    no    |
+        |- L1          |  7217152|  7217152|     28192|          -|          -|   256|    no    |
+        | + L2         |    28190|    28190|      2819|          -|          -|    10|    no    |
+        |  ++ L3       |     2816|     2816|        11|          -|          -|   256|    no    |
+        |- STORE_O_1   |     4352|     4352|        17|          -|          -|   256|    no    |
+        | + STORE_O_2  |       15|       15|         3|          -|          -|     5|    no    |
+        +--------------+---------+---------+----------+-----------+-----------+------+----------+
 
 ============================================================
 + Verbose Summary: Synthesis Manager
@@ -202,10 +202,10 @@ ST_1: weight_buf (31)  [1/1] 0.00ns  loc: ./mmult_float.cpp:29
 :16  %weight_buf = alloca [2560 x float], align 4
 
 ST_1: in_buf (32)  [1/1] 0.00ns  loc: ./mmult_float.cpp:30
-:17  %in_buf = alloca [2048 x float], align 4
+:17  %in_buf = alloca [65536 x float], align 4
 
 ST_1: out_buf (33)  [1/1] 0.00ns  loc: ./mmult_float.cpp:31
-:18  %out_buf = alloca [80 x float], align 4
+:18  %out_buf = alloca [2560 x float], align 4
 
 ST_1: StgValue_47 (34)  [1/1] 0.00ns  loc: ./mmult_float.cpp:10
 :19  call void (...)* @_ssdm_op_SpecInterface(i32 0, [10 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [12 x i8]* @p_str2, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
@@ -434,24 +434,24 @@ ST_6: StgValue_118 (106)  [1/1] 0.00ns  loc: ./mmult_float.cpp:46
 :20  br label %4
 
 
- <State 7>: 3.10ns
+ <State 7>: 3.02ns
 ST_7: indvars_iv5 (114)  [1/1] 0.00ns  loc: ./mmult_float.cpp:56
-.preheader17:0  %indvars_iv5 = phi i12 [ %indvars_iv_next6, %10 ], [ 1413, %.preheader17.preheader ]
+.preheader17:0  %indvars_iv5 = phi i16 [ %indvars_iv_next6, %10 ], [ 1413, %.preheader17.preheader ]
 
 ST_7: i2 (115)  [1/1] 0.00ns
-.preheader17:1  %i2 = phi i4 [ %i_3, %10 ], [ 0, %.preheader17.preheader ]
+.preheader17:1  %i2 = phi i9 [ %i_3, %10 ], [ 0, %.preheader17.preheader ]
 
 ST_7: is_idx_3 (116)  [1/1] 0.00ns
-.preheader17:2  %is_idx_3 = phi i12 [ %is_idx_5, %10 ], [ 1285, %.preheader17.preheader ]
+.preheader17:2  %is_idx_3 = phi i16 [ %is_idx_5, %10 ], [ 1285, %.preheader17.preheader ]
 
-ST_7: exitcond8 (117)  [1/1] 3.10ns  loc: ./mmult_float.cpp:56
-.preheader17:3  %exitcond8 = icmp eq i4 %i2, -8
+ST_7: exitcond8 (117)  [1/1] 3.02ns  loc: ./mmult_float.cpp:56
+.preheader17:3  %exitcond8 = icmp eq i9 %i2, -256
 
 ST_7: empty_10 (118)  [1/1] 0.00ns
-.preheader17:4  %empty_10 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 8, i64 8, i64 8)
+.preheader17:4  %empty_10 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 256, i64 256, i64 256)
 
-ST_7: i_3 (119)  [1/1] 2.62ns  loc: ./mmult_float.cpp:56
-.preheader17:5  %i_3 = add i4 %i2, 1
+ST_7: i_3 (119)  [1/1] 2.82ns  loc: ./mmult_float.cpp:56
+.preheader17:5  %i_3 = add i9 %i2, 1
 
 ST_7: StgValue_125 (120)  [1/1] 0.00ns  loc: ./mmult_float.cpp:56
 .preheader17:6  br i1 %exitcond8, label %.preheader16.preheader, label %7
@@ -462,14 +462,14 @@ ST_7: StgValue_126 (122)  [1/1] 0.00ns  loc: ./mmult_float.cpp:56
 ST_7: tmp_10 (123)  [1/1] 0.00ns  loc: ./mmult_float.cpp:56
 :1  %tmp_10 = call i32 (...)* @_ssdm_op_SpecRegionBegin([9 x i8]* @p_str8)
 
-ST_7: is_idx_5 (124)  [1/1] 2.88ns  loc: ./mmult_float.cpp:39
-:2  %is_idx_5 = add i12 %is_idx_3, 128
+ST_7: is_idx_5 (124)  [1/1] 2.96ns  loc: ./mmult_float.cpp:39
+:2  %is_idx_5 = add i16 %is_idx_3, 128
 
 ST_7: tmp_12 (125)  [1/1] 0.00ns  loc: ./mmult_float.cpp:56
-:3  %tmp_12 = call i12 @_ssdm_op_BitConcatenate.i12.i4.i8(i4 %i2, i8 0)
+:3  %tmp_12 = call i17 @_ssdm_op_BitConcatenate.i17.i9.i8(i9 %i2, i8 0)
 
 ST_7: tmp_14_cast (126)  [1/1] 0.00ns  loc: ./mmult_float.cpp:57
-:4  %tmp_14_cast = zext i12 %tmp_12 to i13
+:4  %tmp_14_cast = zext i17 %tmp_12 to i18
 
 ST_7: StgValue_131 (127)  [1/1] 1.77ns  loc: ./mmult_float.cpp:57
 :5  br label %8
@@ -478,15 +478,15 @@ ST_7: StgValue_132 (161)  [1/1] 1.77ns  loc: ./mmult_float.cpp:66
 .preheader16.preheader:0  br label %.preheader16
 
 
- <State 8>: 2.94ns
+ <State 8>: 3.03ns
 ST_8: j3 (129)  [1/1] 0.00ns
 :0  %j3 = phi i9 [ 0, %7 ], [ %j_2, %9 ]
 
 ST_8: is_idx_4 (130)  [1/1] 0.00ns
-:1  %is_idx_4 = phi i12 [ %is_idx_3, %7 ], [ %is_idx_6, %9 ]
+:1  %is_idx_4 = phi i16 [ %is_idx_3, %7 ], [ %is_idx_6, %9 ]
 
-ST_8: exitcond7 (131)  [1/1] 2.94ns  loc: ./mmult_float.cpp:57
-:2  %exitcond7 = icmp eq i12 %is_idx_4, %indvars_iv5
+ST_8: exitcond7 (131)  [1/1] 3.03ns  loc: ./mmult_float.cpp:57
+:2  %exitcond7 = icmp eq i16 %is_idx_4, %indvars_iv5
 
 ST_8: empty_11 (132)  [1/1] 0.00ns
 :3  %empty_11 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 128, i64 128, i64 128)
@@ -494,17 +494,17 @@ ST_8: empty_11 (132)  [1/1] 0.00ns
 ST_8: StgValue_137 (133)  [1/1] 0.00ns  loc: ./mmult_float.cpp:57
 :4  br i1 %exitcond7, label %10, label %9
 
-ST_8: is_idx_6 (136)  [1/1] 2.88ns  loc: ./mmult_float.cpp:59
-:1  %is_idx_6 = add i12 1, %is_idx_4
+ST_8: is_idx_6 (136)  [1/1] 2.96ns  loc: ./mmult_float.cpp:59
+:1  %is_idx_6 = add i16 1, %is_idx_4
 
 ST_8: empty_12 (137)  [2/2] 0.00ns
 :2  %empty_12 = call { i64, i8, i8, i4, i1, i5, i5 } @_ssdm_op_Read.axis.volatile.i64P.i8P.i8P.i4P.i1P.i5P.i5P(i64* %in_stream_data_V, i8* %in_stream_keep_V, i8* %in_stream_strb_V, i4* %in_stream_user_V, i1* %in_stream_last_V, i5* %in_stream_id_V, i5* %in_stream_dest_V)
 
 ST_8: tmp_21_cast (141)  [1/1] 0.00ns  loc: ./mmult_float.cpp:60
-:6  %tmp_21_cast = zext i9 %j3 to i13
+:6  %tmp_21_cast = zext i9 %j3 to i18
 
-ST_8: tmp_37 (142)  [1/1] 2.88ns  loc: ./mmult_float.cpp:60
-:7  %tmp_37 = add i13 %tmp_21_cast, %tmp_14_cast
+ST_8: tmp_37 (142)  [1/1] 2.99ns  loc: ./mmult_float.cpp:60
+:7  %tmp_37 = add i18 %tmp_21_cast, %tmp_14_cast
 
 ST_8: tmp_40 (148)  [1/1] 0.00ns  loc: ./mmult_float.cpp:57
 :13  %tmp_40 = trunc i9 %j3 to i8
@@ -515,8 +515,8 @@ ST_8: j_2 (154)  [1/1] 2.82ns  loc: ./mmult_float.cpp:57
 ST_8: empty_13 (157)  [1/1] 0.00ns  loc: ./mmult_float.cpp:63
 :0  %empty_13 = call i32 (...)* @_ssdm_op_SpecRegionEnd([9 x i8]* @p_str8, i32 %tmp_10)
 
-ST_8: indvars_iv_next6 (158)  [1/1] 2.88ns  loc: ./mmult_float.cpp:56
-:1  %indvars_iv_next6 = add i12 %indvars_iv5, 128
+ST_8: indvars_iv_next6 (158)  [1/1] 2.96ns  loc: ./mmult_float.cpp:56
+:1  %indvars_iv_next6 = add i16 %indvars_iv5, 128
 
 ST_8: StgValue_146 (159)  [1/1] 0.00ns  loc: ./mmult_float.cpp:56
 :2  br label %.preheader17
@@ -539,10 +539,10 @@ ST_9: bitcast (140)  [1/1] 0.00ns
 :5  %bitcast = bitcast i32 %tmp_33 to float
 
 ST_9: tmp_43_cast (143)  [1/1] 0.00ns  loc: ./mmult_float.cpp:60
-:8  %tmp_43_cast = zext i13 %tmp_37 to i64
+:8  %tmp_43_cast = zext i18 %tmp_37 to i64
 
 ST_9: in_buf_addr (144)  [1/1] 0.00ns  loc: ./mmult_float.cpp:60
-:9  %in_buf_addr = getelementptr [2048 x float]* %in_buf, i64 0, i64 %tmp_43_cast
+:9  %in_buf_addr = getelementptr [65536 x float]* %in_buf, i64 0, i64 %tmp_43_cast
 
 ST_9: StgValue_154 (145)  [1/1] 3.25ns  loc: ./mmult_float.cpp:60
 :10  store float %bitcast, float* %in_buf_addr, align 8
@@ -557,13 +557,13 @@ ST_9: tmp_25 (149)  [1/1] 0.00ns  loc: ./mmult_float.cpp:61
 :14  %tmp_25 = or i8 %tmp_40, 1
 
 ST_9: tmp_41 (150)  [1/1] 0.00ns  loc: ./mmult_float.cpp:56
-:15  %tmp_41 = call i12 @_ssdm_op_BitConcatenate.i12.i4.i8(i4 %i2, i8 %tmp_25)
+:15  %tmp_41 = call i17 @_ssdm_op_BitConcatenate.i17.i9.i8(i9 %i2, i8 %tmp_25)
 
 ST_9: tmp_42 (151)  [1/1] 0.00ns  loc: ./mmult_float.cpp:61
-:16  %tmp_42 = zext i12 %tmp_41 to i64
+:16  %tmp_42 = zext i17 %tmp_41 to i64
 
 ST_9: in_buf_addr_1 (152)  [1/1] 0.00ns  loc: ./mmult_float.cpp:61
-:17  %in_buf_addr_1 = getelementptr [2048 x float]* %in_buf, i64 0, i64 %tmp_42
+:17  %in_buf_addr_1 = getelementptr [65536 x float]* %in_buf, i64 0, i64 %tmp_42
 
 ST_9: StgValue_161 (153)  [1/1] 3.25ns  loc: ./mmult_float.cpp:61
 :18  store float %tmp_24, float* %in_buf_addr_1, align 4
@@ -572,18 +572,18 @@ ST_9: StgValue_162 (155)  [1/1] 0.00ns  loc: ./mmult_float.cpp:57
 :20  br label %8
 
 
- <State 10>: 3.10ns
+ <State 10>: 3.02ns
 ST_10: i4 (163)  [1/1] 0.00ns
-.preheader16:0  %i4 = phi i4 [ %i_4, %17 ], [ 0, %.preheader16.preheader ]
+.preheader16:0  %i4 = phi i9 [ %i_4, %17 ], [ 0, %.preheader16.preheader ]
 
-ST_10: exitcond4 (164)  [1/1] 3.10ns  loc: ./mmult_float.cpp:66
-.preheader16:1  %exitcond4 = icmp eq i4 %i4, -8
+ST_10: exitcond4 (164)  [1/1] 3.02ns  loc: ./mmult_float.cpp:66
+.preheader16:1  %exitcond4 = icmp eq i9 %i4, -256
 
 ST_10: empty_14 (165)  [1/1] 0.00ns
-.preheader16:2  %empty_14 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 8, i64 8, i64 8)
+.preheader16:2  %empty_14 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 256, i64 256, i64 256)
 
-ST_10: i_4 (166)  [1/1] 2.62ns  loc: ./mmult_float.cpp:66
-.preheader16:3  %i_4 = add i4 %i4, 1
+ST_10: i_4 (166)  [1/1] 2.82ns  loc: ./mmult_float.cpp:66
+.preheader16:3  %i_4 = add i9 %i4, 1
 
 ST_10: StgValue_167 (167)  [1/1] 0.00ns  loc: ./mmult_float.cpp:66
 .preheader16:4  br i1 %exitcond4, label %.preheader.preheader, label %11
@@ -595,30 +595,30 @@ ST_10: tmp_20 (170)  [1/1] 0.00ns  loc: ./mmult_float.cpp:66
 :1  %tmp_20 = call i32 (...)* @_ssdm_op_SpecRegionBegin([3 x i8]* @p_str10)
 
 ST_10: tmp_22 (171)  [1/1] 0.00ns  loc: ./mmult_float.cpp:66
-:2  %tmp_22 = call i12 @_ssdm_op_BitConcatenate.i12.i4.i8(i4 %i4, i8 0)
+:2  %tmp_22 = call i17 @_ssdm_op_BitConcatenate.i17.i9.i8(i9 %i4, i8 0)
 
 ST_10: tmp_27_cast (172)  [1/1] 0.00ns  loc: ./mmult_float.cpp:66
-:3  %tmp_27_cast = zext i12 %tmp_22 to i13
+:3  %tmp_27_cast = zext i17 %tmp_22 to i18
 
 ST_10: tmp_26 (173)  [1/1] 0.00ns  loc: ./mmult_float.cpp:66
-:4  %tmp_26 = call i7 @_ssdm_op_BitConcatenate.i7.i4.i3(i4 %i4, i3 0)
+:4  %tmp_26 = call i12 @_ssdm_op_BitConcatenate.i12.i9.i3(i9 %i4, i3 0)
 
 ST_10: p_shl_cast (174)  [1/1] 0.00ns  loc: ./mmult_float.cpp:66
-:5  %p_shl_cast = zext i7 %tmp_26 to i8
+:5  %p_shl_cast = zext i12 %tmp_26 to i13
 
 ST_10: tmp_27 (175)  [1/1] 0.00ns  loc: ./mmult_float.cpp:66
-:6  %tmp_27 = call i5 @_ssdm_op_BitConcatenate.i5.i4.i1(i4 %i4, i1 false)
+:6  %tmp_27 = call i10 @_ssdm_op_BitConcatenate.i10.i9.i1(i9 %i4, i1 false)
 
 ST_10: p_shl1_cast (176)  [1/1] 0.00ns  loc: ./mmult_float.cpp:74
-:7  %p_shl1_cast = zext i5 %tmp_27 to i8
+:7  %p_shl1_cast = zext i10 %tmp_27 to i13
 
-ST_10: tmp_29 (177)  [1/1] 2.75ns  loc: ./mmult_float.cpp:74
-:8  %tmp_29 = add i8 %p_shl1_cast, %p_shl_cast
+ST_10: tmp_29 (177)  [1/1] 2.88ns  loc: ./mmult_float.cpp:74
+:8  %tmp_29 = add i13 %p_shl1_cast, %p_shl_cast
 
 ST_10: StgValue_177 (178)  [1/1] 1.77ns  loc: ./mmult_float.cpp:68
 :9  br label %12
 
-ST_10: StgValue_178 (227)  [1/1] 1.77ns  loc: ./mmult_float.cpp:79
+ST_10: StgValue_178 (228)  [1/1] 1.77ns  loc: ./mmult_float.cpp:79
 .preheader.preheader:0  br label %.preheader
 
 
@@ -642,16 +642,16 @@ ST_11: tmp_28 (188)  [1/1] 0.00ns  loc: ./mmult_float.cpp:70
 :2  %tmp_28 = zext i4 %j5 to i64
 
 ST_11: tmp_28_cast (189)  [1/1] 0.00ns  loc: ./mmult_float.cpp:68
-:3  %tmp_28_cast = zext i4 %j5 to i8
+:3  %tmp_28_cast = zext i4 %j5 to i13
 
-ST_11: tmp_47 (192)  [1/1] 2.80ns  loc: ./mmult_float.cpp:74
-:6  %tmp_47 = add i8 %tmp_28_cast, %tmp_29
+ST_11: tmp_47 (192)  [1/1] 2.90ns  loc: ./mmult_float.cpp:74
+:6  %tmp_47 = add i13 %tmp_28_cast, %tmp_29
 
 ST_11: tmp_51_cast (193)  [1/1] 0.00ns  loc: ./mmult_float.cpp:74
-:7  %tmp_51_cast = zext i8 %tmp_47 to i64
+:7  %tmp_51_cast = zext i13 %tmp_47 to i64
 
 ST_11: out_buf_addr_2 (194)  [1/1] 0.00ns  loc: ./mmult_float.cpp:74
-:8  %out_buf_addr_2 = getelementptr [80 x float]* %out_buf, i64 0, i64 %tmp_51_cast
+:8  %out_buf_addr_2 = getelementptr [2560 x float]* %out_buf, i64 0, i64 %tmp_51_cast
 
 ST_11: offset_buf_addr_2 (195)  [1/1] 0.00ns  loc: ./mmult_float.cpp:70
 :9  %offset_buf_addr_2 = getelementptr inbounds [10 x float]* %offset_buf, i64 0, i64 %tmp_28
@@ -659,10 +659,10 @@ ST_11: offset_buf_addr_2 (195)  [1/1] 0.00ns  loc: ./mmult_float.cpp:70
 ST_11: tmp (196)  [2/2] 2.32ns  loc: ./mmult_float.cpp:70
 :10  %tmp = load float* %offset_buf_addr_2, align 4
 
-ST_11: empty_18 (224)  [1/1] 0.00ns  loc: ./mmult_float.cpp:76
+ST_11: empty_18 (225)  [1/1] 0.00ns  loc: ./mmult_float.cpp:76
 :0  %empty_18 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str10, i32 %tmp_20)
 
-ST_11: StgValue_192 (225)  [1/1] 0.00ns  loc: ./mmult_float.cpp:66
+ST_11: StgValue_192 (226)  [1/1] 0.00ns  loc: ./mmult_float.cpp:66
 :1  br label %.preheader16
 
 
@@ -686,7 +686,7 @@ ST_12: StgValue_198 (197)  [1/1] 1.77ns  loc: ./mmult_float.cpp:71
 :11  br label %14
 
 
- <State 13>: 6.13ns
+ <State 13>: 6.25ns
 ST_13: k (199)  [1/1] 0.00ns
 :0  %k = phi i9 [ 0, %13 ], [ %k_1, %15 ]
 
@@ -705,251 +705,254 @@ ST_13: k_1 (203)  [1/1] 2.82ns  loc: ./mmult_float.cpp:71
 ST_13: StgValue_204 (204)  [1/1] 0.00ns  loc: ./mmult_float.cpp:71
 :5  br i1 %exitcond2, label %16, label %15
 
-ST_13: tmp_37_cast (207)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
-:1  %tmp_37_cast = zext i9 %k to i13
+ST_13: tmp_37_cast6 (207)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
+:1  %tmp_37_cast6 = zext i9 %k to i18
 
-ST_13: tmp_50 (208)  [1/1] 2.88ns  loc: ./mmult_float.cpp:72
-:2  %tmp_50 = add i13 %tmp_50_cast, %tmp_37_cast
+ST_13: tmp_37_cast (208)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
+:2  %tmp_37_cast = zext i9 %k to i13
 
-ST_13: tmp_54_cast (209)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
-:3  %tmp_54_cast = zext i13 %tmp_50 to i64
+ST_13: tmp_50 (209)  [1/1] 2.88ns  loc: ./mmult_float.cpp:72
+:3  %tmp_50 = add i13 %tmp_50_cast, %tmp_37_cast
 
-ST_13: weight_buf_addr_2 (210)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
-:4  %weight_buf_addr_2 = getelementptr [2560 x float]* %weight_buf, i64 0, i64 %tmp_54_cast
+ST_13: tmp_54_cast (210)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
+:4  %tmp_54_cast = zext i13 %tmp_50 to i64
 
-ST_13: tmp_51 (211)  [1/1] 2.88ns  loc: ./mmult_float.cpp:72
-:5  %tmp_51 = add i13 %tmp_27_cast, %tmp_37_cast
+ST_13: weight_buf_addr_2 (211)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
+:5  %weight_buf_addr_2 = getelementptr [2560 x float]* %weight_buf, i64 0, i64 %tmp_54_cast
 
-ST_13: tmp_55_cast (212)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
-:6  %tmp_55_cast = zext i13 %tmp_51 to i64
+ST_13: tmp_51 (212)  [1/1] 2.99ns  loc: ./mmult_float.cpp:72
+:6  %tmp_51 = add i18 %tmp_27_cast, %tmp_37_cast6
 
-ST_13: in_buf_addr_2 (213)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
-:7  %in_buf_addr_2 = getelementptr [2048 x float]* %in_buf, i64 0, i64 %tmp_55_cast
+ST_13: tmp_55_cast (213)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
+:7  %tmp_55_cast = zext i18 %tmp_51 to i64
 
-ST_13: in_buf_load (214)  [2/2] 3.25ns  loc: ./mmult_float.cpp:72
-:8  %in_buf_load = load float* %in_buf_addr_2, align 4
+ST_13: in_buf_addr_2 (214)  [1/1] 0.00ns  loc: ./mmult_float.cpp:72
+:8  %in_buf_addr_2 = getelementptr [65536 x float]* %in_buf, i64 0, i64 %tmp_55_cast
 
-ST_13: weight_buf_load (215)  [2/2] 3.25ns  loc: ./mmult_float.cpp:72
-:9  %weight_buf_load = load float* %weight_buf_addr_2, align 4
+ST_13: in_buf_load (215)  [2/2] 3.25ns  loc: ./mmult_float.cpp:72
+:9  %in_buf_load = load float* %in_buf_addr_2, align 4
 
-ST_13: StgValue_214 (220)  [1/1] 3.25ns  loc: ./mmult_float.cpp:74
+ST_13: weight_buf_load (216)  [2/2] 3.25ns  loc: ./mmult_float.cpp:72
+:10  %weight_buf_load = load float* %weight_buf_addr_2, align 4
+
+ST_13: StgValue_215 (221)  [1/1] 3.25ns  loc: ./mmult_float.cpp:74
 :0  store float %tmp1, float* %out_buf_addr_2, align 4
 
-ST_13: empty_17 (221)  [1/1] 0.00ns  loc: ./mmult_float.cpp:75
+ST_13: empty_17 (222)  [1/1] 0.00ns  loc: ./mmult_float.cpp:75
 :1  %empty_17 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str11, i32 %tmp_35)
 
-ST_13: StgValue_216 (222)  [1/1] 0.00ns  loc: ./mmult_float.cpp:68
+ST_13: StgValue_217 (223)  [1/1] 0.00ns  loc: ./mmult_float.cpp:68
 :2  br label %12
 
 
  <State 14>: 3.25ns
-ST_14: in_buf_load (214)  [1/2] 3.25ns  loc: ./mmult_float.cpp:72
-:8  %in_buf_load = load float* %in_buf_addr_2, align 4
+ST_14: in_buf_load (215)  [1/2] 3.25ns  loc: ./mmult_float.cpp:72
+:9  %in_buf_load = load float* %in_buf_addr_2, align 4
 
-ST_14: weight_buf_load (215)  [1/2] 3.25ns  loc: ./mmult_float.cpp:72
-:9  %weight_buf_load = load float* %weight_buf_addr_2, align 4
+ST_14: weight_buf_load (216)  [1/2] 3.25ns  loc: ./mmult_float.cpp:72
+:10  %weight_buf_load = load float* %weight_buf_addr_2, align 4
 
 
  <State 15>: 5.70ns
-ST_15: tmp_38 (216)  [4/4] 5.70ns  loc: ./mmult_float.cpp:72
-:10  %tmp_38 = fmul float %in_buf_load, %weight_buf_load
+ST_15: tmp_38 (217)  [4/4] 5.70ns  loc: ./mmult_float.cpp:72
+:11  %tmp_38 = fmul float %in_buf_load, %weight_buf_load
 
 
  <State 16>: 5.70ns
-ST_16: tmp_38 (216)  [3/4] 5.70ns  loc: ./mmult_float.cpp:72
-:10  %tmp_38 = fmul float %in_buf_load, %weight_buf_load
+ST_16: tmp_38 (217)  [3/4] 5.70ns  loc: ./mmult_float.cpp:72
+:11  %tmp_38 = fmul float %in_buf_load, %weight_buf_load
 
 
  <State 17>: 5.70ns
-ST_17: tmp_38 (216)  [2/4] 5.70ns  loc: ./mmult_float.cpp:72
-:10  %tmp_38 = fmul float %in_buf_load, %weight_buf_load
+ST_17: tmp_38 (217)  [2/4] 5.70ns  loc: ./mmult_float.cpp:72
+:11  %tmp_38 = fmul float %in_buf_load, %weight_buf_load
 
 
  <State 18>: 5.70ns
-ST_18: tmp_38 (216)  [1/4] 5.70ns  loc: ./mmult_float.cpp:72
-:10  %tmp_38 = fmul float %in_buf_load, %weight_buf_load
+ST_18: tmp_38 (217)  [1/4] 5.70ns  loc: ./mmult_float.cpp:72
+:11  %tmp_38 = fmul float %in_buf_load, %weight_buf_load
 
 
  <State 19>: 7.26ns
-ST_19: tmp_39 (217)  [5/5] 7.26ns  loc: ./mmult_float.cpp:72
-:11  %tmp_39 = fadd float %tmp1, %tmp_38
+ST_19: tmp_39 (218)  [5/5] 7.26ns  loc: ./mmult_float.cpp:72
+:12  %tmp_39 = fadd float %tmp1, %tmp_38
 
 
  <State 20>: 7.26ns
-ST_20: tmp_39 (217)  [4/5] 7.26ns  loc: ./mmult_float.cpp:72
-:11  %tmp_39 = fadd float %tmp1, %tmp_38
+ST_20: tmp_39 (218)  [4/5] 7.26ns  loc: ./mmult_float.cpp:72
+:12  %tmp_39 = fadd float %tmp1, %tmp_38
 
 
  <State 21>: 7.26ns
-ST_21: tmp_39 (217)  [3/5] 7.26ns  loc: ./mmult_float.cpp:72
-:11  %tmp_39 = fadd float %tmp1, %tmp_38
+ST_21: tmp_39 (218)  [3/5] 7.26ns  loc: ./mmult_float.cpp:72
+:12  %tmp_39 = fadd float %tmp1, %tmp_38
 
 
  <State 22>: 7.26ns
-ST_22: tmp_39 (217)  [2/5] 7.26ns  loc: ./mmult_float.cpp:72
-:11  %tmp_39 = fadd float %tmp1, %tmp_38
+ST_22: tmp_39 (218)  [2/5] 7.26ns  loc: ./mmult_float.cpp:72
+:12  %tmp_39 = fadd float %tmp1, %tmp_38
 
 
  <State 23>: 7.26ns
-ST_23: StgValue_227 (206)  [1/1] 0.00ns  loc: ./mmult_float.cpp:71
+ST_23: StgValue_228 (206)  [1/1] 0.00ns  loc: ./mmult_float.cpp:71
 :0  call void (...)* @_ssdm_op_SpecLoopName([3 x i8]* @p_str12) nounwind
 
-ST_23: tmp_39 (217)  [1/5] 7.26ns  loc: ./mmult_float.cpp:72
-:11  %tmp_39 = fadd float %tmp1, %tmp_38
+ST_23: tmp_39 (218)  [1/5] 7.26ns  loc: ./mmult_float.cpp:72
+:12  %tmp_39 = fadd float %tmp1, %tmp_38
 
-ST_23: StgValue_229 (218)  [1/1] 0.00ns  loc: ./mmult_float.cpp:71
-:12  br label %14
+ST_23: StgValue_230 (219)  [1/1] 0.00ns  loc: ./mmult_float.cpp:71
+:13  br label %14
 
 
- <State 24>: 3.10ns
-ST_24: indvars_iv (229)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
-.preheader:0  %indvars_iv = phi i6 [ %indvars_iv_next, %21 ], [ 5, %.preheader.preheader ]
+ <State 24>: 3.02ns
+ST_24: indvars_iv (230)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
+.preheader:0  %indvars_iv = phi i11 [ %indvars_iv_next, %21 ], [ 5, %.preheader.preheader ]
 
-ST_24: os_idx (230)  [1/1] 0.00ns
-.preheader:1  %os_idx = phi i6 [ %os_idx_2, %21 ], [ 0, %.preheader.preheader ]
+ST_24: os_idx (231)  [1/1] 0.00ns
+.preheader:1  %os_idx = phi i11 [ %os_idx_2, %21 ], [ 0, %.preheader.preheader ]
 
-ST_24: i6 (231)  [1/1] 0.00ns
-.preheader:2  %i6 = phi i4 [ %i_5, %21 ], [ 0, %.preheader.preheader ]
+ST_24: i6 (232)  [1/1] 0.00ns
+.preheader:2  %i6 = phi i9 [ %i_5, %21 ], [ 0, %.preheader.preheader ]
 
-ST_24: exitcond1 (232)  [1/1] 3.10ns  loc: ./mmult_float.cpp:79
-.preheader:3  %exitcond1 = icmp eq i4 %i6, -8
+ST_24: exitcond1 (233)  [1/1] 3.02ns  loc: ./mmult_float.cpp:79
+.preheader:3  %exitcond1 = icmp eq i9 %i6, -256
 
-ST_24: empty_19 (233)  [1/1] 0.00ns
-.preheader:4  %empty_19 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 8, i64 8, i64 8)
+ST_24: empty_19 (234)  [1/1] 0.00ns
+.preheader:4  %empty_19 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 256, i64 256, i64 256)
 
-ST_24: i_5 (234)  [1/1] 2.62ns  loc: ./mmult_float.cpp:79
-.preheader:5  %i_5 = add i4 %i6, 1
+ST_24: i_5 (235)  [1/1] 2.82ns  loc: ./mmult_float.cpp:79
+.preheader:5  %i_5 = add i9 %i6, 1
 
-ST_24: StgValue_236 (235)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
+ST_24: StgValue_237 (236)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
 .preheader:6  br i1 %exitcond1, label %22, label %18
 
-ST_24: StgValue_237 (237)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
+ST_24: StgValue_238 (238)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
 :0  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str13) nounwind
 
-ST_24: tmp_31 (238)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
+ST_24: tmp_31 (239)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
 :1  %tmp_31 = call i32 (...)* @_ssdm_op_SpecRegionBegin([10 x i8]* @p_str13)
 
-ST_24: os_idx_2 (239)  [1/1] 2.71ns  loc: ./mmult_float.cpp:84
-:2  %os_idx_2 = add i6 %os_idx, 5
+ST_24: os_idx_2 (240)  [1/1] 2.86ns  loc: ./mmult_float.cpp:84
+:2  %os_idx_2 = add i11 %os_idx, 5
 
-ST_24: tmp_43 (240)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
-:3  %tmp_43 = call i7 @_ssdm_op_BitConcatenate.i7.i4.i3(i4 %i6, i3 0)
+ST_24: tmp_43 (241)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
+:3  %tmp_43 = call i12 @_ssdm_op_BitConcatenate.i12.i9.i3(i9 %i6, i3 0)
 
-ST_24: p_shl2_cast (241)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
-:4  %p_shl2_cast = zext i7 %tmp_43 to i8
+ST_24: p_shl2_cast (242)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
+:4  %p_shl2_cast = zext i12 %tmp_43 to i13
 
-ST_24: tmp_44 (242)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
-:5  %tmp_44 = call i5 @_ssdm_op_BitConcatenate.i5.i4.i1(i4 %i6, i1 false)
+ST_24: tmp_44 (243)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
+:5  %tmp_44 = call i10 @_ssdm_op_BitConcatenate.i10.i9.i1(i9 %i6, i1 false)
 
-ST_24: p_shl3_cast (243)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
-:6  %p_shl3_cast = zext i5 %tmp_44 to i8
+ST_24: p_shl3_cast (244)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
+:6  %p_shl3_cast = zext i10 %tmp_44 to i13
 
-ST_24: tmp_45 (244)  [1/1] 2.75ns  loc: ./mmult_float.cpp:82
-:7  %tmp_45 = add i8 %p_shl3_cast, %p_shl2_cast
+ST_24: tmp_45 (245)  [1/1] 2.88ns  loc: ./mmult_float.cpp:82
+:7  %tmp_45 = add i13 %p_shl3_cast, %p_shl2_cast
 
-ST_24: StgValue_245 (245)  [1/1] 1.77ns  loc: ./mmult_float.cpp:80
+ST_24: StgValue_246 (246)  [1/1] 1.77ns  loc: ./mmult_float.cpp:80
 :8  br label %19
 
-ST_24: StgValue_246 (278)  [1/1] 0.00ns  loc: ./mmult_float.cpp:87
+ST_24: StgValue_247 (279)  [1/1] 0.00ns  loc: ./mmult_float.cpp:87
 :0  ret void
 
 
- <State 25>: 6.59ns
-ST_25: os_idx_1 (247)  [1/1] 0.00ns  loc: ./mmult_float.cpp:84
-:0  %os_idx_1 = phi i6 [ %os_idx, %18 ], [ %tmp_36, %20 ]
+ <State 25>: 6.15ns
+ST_25: os_idx_1 (248)  [1/1] 0.00ns  loc: ./mmult_float.cpp:84
+:0  %os_idx_1 = phi i11 [ %os_idx, %18 ], [ %tmp_36, %20 ]
 
-ST_25: j7 (248)  [1/1] 0.00ns
+ST_25: j7 (249)  [1/1] 0.00ns
 :1  %j7 = phi i4 [ 0, %18 ], [ %j_3, %20 ]
 
-ST_25: exitcond (249)  [1/1] 3.88ns  loc: ./mmult_float.cpp:80
-:2  %exitcond = icmp eq i6 %os_idx_1, %indvars_iv
+ST_25: exitcond (250)  [1/1] 2.94ns  loc: ./mmult_float.cpp:80
+:2  %exitcond = icmp eq i11 %os_idx_1, %indvars_iv
 
-ST_25: empty_20 (250)  [1/1] 0.00ns
+ST_25: empty_20 (251)  [1/1] 0.00ns
 :3  %empty_20 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 5, i64 5, i64 5)
 
-ST_25: StgValue_251 (251)  [1/1] 0.00ns  loc: ./mmult_float.cpp:80
+ST_25: StgValue_252 (252)  [1/1] 0.00ns  loc: ./mmult_float.cpp:80
 :4  br i1 %exitcond, label %21, label %20
 
-ST_25: tmp_29_cast (254)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
-:1  %tmp_29_cast = zext i4 %j7 to i8
+ST_25: tmp_29_cast (255)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
+:1  %tmp_29_cast = zext i4 %j7 to i13
 
-ST_25: tmp_48 (255)  [1/1] 2.80ns  loc: ./mmult_float.cpp:82
-:2  %tmp_48 = add i8 %tmp_45, %tmp_29_cast
+ST_25: tmp_48 (256)  [1/1] 2.90ns  loc: ./mmult_float.cpp:82
+:2  %tmp_48 = add i13 %tmp_45, %tmp_29_cast
 
-ST_25: tmp_52_cast (256)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
-:3  %tmp_52_cast = zext i8 %tmp_48 to i64
+ST_25: tmp_52_cast (257)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
+:3  %tmp_52_cast = zext i13 %tmp_48 to i64
 
-ST_25: out_buf_addr (257)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
-:4  %out_buf_addr = getelementptr [80 x float]* %out_buf, i64 0, i64 %tmp_52_cast
+ST_25: out_buf_addr (258)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
+:4  %out_buf_addr = getelementptr [2560 x float]* %out_buf, i64 0, i64 %tmp_52_cast
 
-ST_25: out_buf_load (258)  [2/2] 3.25ns  loc: ./mmult_float.cpp:82
+ST_25: out_buf_load (259)  [2/2] 3.25ns  loc: ./mmult_float.cpp:82
 :5  %out_buf_load = load float* %out_buf_addr, align 8
 
-ST_25: tmp_32 (260)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83 (grouped into LUT with out node tmp_49)
+ST_25: tmp_32 (261)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83 (grouped into LUT with out node tmp_49)
 :7  %tmp_32 = or i4 %j7, 1
 
-ST_25: tmp_33_cast (261)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83 (grouped into LUT with out node tmp_49)
-:8  %tmp_33_cast = zext i4 %tmp_32 to i8
+ST_25: tmp_33_cast (262)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83 (grouped into LUT with out node tmp_49)
+:8  %tmp_33_cast = zext i4 %tmp_32 to i13
 
-ST_25: tmp_49 (262)  [1/1] 2.80ns  loc: ./mmult_float.cpp:83 (out node of the LUT)
-:9  %tmp_49 = add i8 %tmp_45, %tmp_33_cast
+ST_25: tmp_49 (263)  [1/1] 2.90ns  loc: ./mmult_float.cpp:83 (out node of the LUT)
+:9  %tmp_49 = add i13 %tmp_45, %tmp_33_cast
 
-ST_25: tmp_53_cast (263)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83
-:10  %tmp_53_cast = zext i8 %tmp_49 to i64
+ST_25: tmp_53_cast (264)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83
+:10  %tmp_53_cast = zext i13 %tmp_49 to i64
 
-ST_25: out_buf_addr_1 (264)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83
-:11  %out_buf_addr_1 = getelementptr [80 x float]* %out_buf, i64 0, i64 %tmp_53_cast
+ST_25: out_buf_addr_1 (265)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83
+:11  %out_buf_addr_1 = getelementptr [2560 x float]* %out_buf, i64 0, i64 %tmp_53_cast
 
-ST_25: out_buf_load_1 (265)  [2/2] 3.25ns  loc: ./mmult_float.cpp:83
+ST_25: out_buf_load_1 (266)  [2/2] 3.25ns  loc: ./mmult_float.cpp:83
 :12  %out_buf_load_1 = load float* %out_buf_addr_1, align 4
 
-ST_25: tmp_36 (268)  [1/1] 2.71ns  loc: ./mmult_float.cpp:84
-:15  %tmp_36 = add i6 %os_idx_1, 1
+ST_25: tmp_36 (269)  [1/1] 2.86ns  loc: ./mmult_float.cpp:84
+:15  %tmp_36 = add i11 %os_idx_1, 1
 
-ST_25: last_assign (269)  [1/1] 3.88ns  loc: ./mmult_float.cpp:84
-:16  %last_assign = icmp eq i6 %tmp_36, -24
+ST_25: last_assign (270)  [1/1] 2.94ns  loc: ./mmult_float.cpp:84
+:16  %last_assign = icmp eq i11 %tmp_36, -768
 
-ST_25: j_3 (271)  [1/1] 2.62ns  loc: ./mmult_float.cpp:80
+ST_25: j_3 (272)  [1/1] 2.62ns  loc: ./mmult_float.cpp:80
 :18  %j_3 = add i4 %j7, 2
 
-ST_25: empty_21 (274)  [1/1] 0.00ns  loc: ./mmult_float.cpp:86
+ST_25: empty_21 (275)  [1/1] 0.00ns  loc: ./mmult_float.cpp:86
 :0  %empty_21 = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str13, i32 %tmp_31)
 
-ST_25: indvars_iv_next (275)  [1/1] 2.71ns  loc: ./mmult_float.cpp:79
-:1  %indvars_iv_next = add i6 %indvars_iv, 5
+ST_25: indvars_iv_next (276)  [1/1] 2.86ns  loc: ./mmult_float.cpp:79
+:1  %indvars_iv_next = add i11 %indvars_iv, 5
 
-ST_25: StgValue_268 (276)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
+ST_25: StgValue_269 (277)  [1/1] 0.00ns  loc: ./mmult_float.cpp:79
 :2  br label %.preheader
 
 
  <State 26>: 3.25ns
-ST_26: out_buf_load (258)  [1/2] 3.25ns  loc: ./mmult_float.cpp:82
+ST_26: out_buf_load (259)  [1/2] 3.25ns  loc: ./mmult_float.cpp:82
 :5  %out_buf_load = load float* %out_buf_addr, align 8
 
-ST_26: tmp_30 (259)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
+ST_26: tmp_30 (260)  [1/1] 0.00ns  loc: ./mmult_float.cpp:82
 :6  %tmp_30 = bitcast float %out_buf_load to i32
 
-ST_26: out_buf_load_1 (265)  [1/2] 3.25ns  loc: ./mmult_float.cpp:83
+ST_26: out_buf_load_1 (266)  [1/2] 3.25ns  loc: ./mmult_float.cpp:83
 :12  %out_buf_load_1 = load float* %out_buf_addr_1, align 4
 
-ST_26: tmp_34 (266)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83
+ST_26: tmp_34 (267)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83
 :13  %tmp_34 = bitcast float %out_buf_load_1 to i32
 
-ST_26: converter (267)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83
+ST_26: converter (268)  [1/1] 0.00ns  loc: ./mmult_float.cpp:83
 :14  %converter = call i64 @_ssdm_op_BitConcatenate.i64.i32.i32(i32 %tmp_34, i32 %tmp_30)
 
-ST_26: StgValue_274 (270)  [2/2] 0.00ns  loc: ./mmult_float.cpp:83
+ST_26: StgValue_275 (271)  [2/2] 0.00ns  loc: ./mmult_float.cpp:83
 :17  call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i8P.i4P.i1P.i5P.i5P(i64* %out_stream_data_V, i8* %out_stream_keep_V, i8* %out_stream_strb_V, i4* %out_stream_user_V, i1* %out_stream_last_V, i5* %out_stream_id_V, i5* %out_stream_dest_V, i64 %converter, i8 -1, i8 -1, i4 0, i1 %last_assign, i5 0, i5 0)
 
 
  <State 27>: 0.00ns
-ST_27: StgValue_275 (253)  [1/1] 0.00ns  loc: ./mmult_float.cpp:80
+ST_27: StgValue_276 (254)  [1/1] 0.00ns  loc: ./mmult_float.cpp:80
 :0  call void (...)* @_ssdm_op_SpecLoopName([10 x i8]* @p_str14) nounwind
 
-ST_27: StgValue_276 (270)  [1/2] 0.00ns  loc: ./mmult_float.cpp:83
+ST_27: StgValue_277 (271)  [1/2] 0.00ns  loc: ./mmult_float.cpp:83
 :17  call void @_ssdm_op_Write.axis.volatile.i64P.i8P.i8P.i4P.i1P.i5P.i5P(i64* %out_stream_data_V, i8* %out_stream_keep_V, i8* %out_stream_strb_V, i4* %out_stream_user_V, i1* %out_stream_last_V, i5* %out_stream_id_V, i5* %out_stream_dest_V, i64 %converter, i8 -1, i8 -1, i4 0, i1 %last_assign, i5 0, i5 0)
 
-ST_27: StgValue_277 (272)  [1/1] 0.00ns  loc: ./mmult_float.cpp:80
+ST_27: StgValue_278 (273)  [1/1] 0.00ns  loc: ./mmult_float.cpp:80
 :19  br label %19
 
 
@@ -987,25 +990,25 @@ The critical path consists of the following:
 	axis read on port 'in_stream_data_V' [88]  (0 ns)
 	'store' operation (./mmult_float.cpp:50) of variable 'tmp_16' on array 'weight_buf', ./mmult_float.cpp:29 [104]  (3.25 ns)
 
- <State 7>: 3.1ns
+ <State 7>: 3.02ns
 The critical path consists of the following:
 	'phi' operation ('i') with incoming values : ('i', ./mmult_float.cpp:56) [115]  (0 ns)
-	'icmp' operation ('exitcond8', ./mmult_float.cpp:56) [117]  (3.1 ns)
+	'icmp' operation ('exitcond8', ./mmult_float.cpp:56) [117]  (3.02 ns)
 
- <State 8>: 2.94ns
+ <State 8>: 3.03ns
 The critical path consists of the following:
 	'phi' operation ('is_idx') with incoming values : ('is_idx', ./mmult_float.cpp:39) ('is_idx', ./mmult_float.cpp:59) [130]  (0 ns)
-	'icmp' operation ('exitcond7', ./mmult_float.cpp:57) [131]  (2.94 ns)
+	'icmp' operation ('exitcond7', ./mmult_float.cpp:57) [131]  (3.03 ns)
 
  <State 9>: 3.25ns
 The critical path consists of the following:
 	axis read on port 'in_stream_data_V' [137]  (0 ns)
 	'store' operation (./mmult_float.cpp:60) of variable 'bitcast' on array 'in_buf', ./mmult_float.cpp:30 [145]  (3.25 ns)
 
- <State 10>: 3.1ns
+ <State 10>: 3.02ns
 The critical path consists of the following:
 	'phi' operation ('i') with incoming values : ('i', ./mmult_float.cpp:66) [163]  (0 ns)
-	'icmp' operation ('exitcond4', ./mmult_float.cpp:66) [164]  (3.1 ns)
+	'icmp' operation ('exitcond4', ./mmult_float.cpp:66) [164]  (3.02 ns)
 
  <State 11>: 3.1ns
 The critical path consists of the following:
@@ -1017,67 +1020,68 @@ The critical path consists of the following:
 	'load' operation ('tmp', ./mmult_float.cpp:70) on array 'offset_buf', ./mmult_float.cpp:28 [196]  (2.32 ns)
 	multiplexor before 'phi' operation ('k') with incoming values : ('k', ./mmult_float.cpp:71) [199]  (1.77 ns)
 
- <State 13>: 6.13ns
+ <State 13>: 6.25ns
 The critical path consists of the following:
 	'phi' operation ('k') with incoming values : ('k', ./mmult_float.cpp:71) [199]  (0 ns)
-	'add' operation ('tmp_51', ./mmult_float.cpp:72) [211]  (2.88 ns)
-	'getelementptr' operation ('in_buf_addr_2', ./mmult_float.cpp:72) [213]  (0 ns)
-	'load' operation ('in_buf_load', ./mmult_float.cpp:72) on array 'in_buf', ./mmult_float.cpp:30 [214]  (3.25 ns)
+	'add' operation ('tmp_51', ./mmult_float.cpp:72) [212]  (2.99 ns)
+	'getelementptr' operation ('in_buf_addr_2', ./mmult_float.cpp:72) [214]  (0 ns)
+	'load' operation ('in_buf_load', ./mmult_float.cpp:72) on array 'in_buf', ./mmult_float.cpp:30 [215]  (3.25 ns)
 
  <State 14>: 3.25ns
 The critical path consists of the following:
-	'load' operation ('in_buf_load', ./mmult_float.cpp:72) on array 'in_buf', ./mmult_float.cpp:30 [214]  (3.25 ns)
+	'load' operation ('in_buf_load', ./mmult_float.cpp:72) on array 'in_buf', ./mmult_float.cpp:30 [215]  (3.25 ns)
 
  <State 15>: 5.7ns
 The critical path consists of the following:
-	'fmul' operation ('tmp_38', ./mmult_float.cpp:72) [216]  (5.7 ns)
+	'fmul' operation ('tmp_38', ./mmult_float.cpp:72) [217]  (5.7 ns)
 
  <State 16>: 5.7ns
 The critical path consists of the following:
-	'fmul' operation ('tmp_38', ./mmult_float.cpp:72) [216]  (5.7 ns)
+	'fmul' operation ('tmp_38', ./mmult_float.cpp:72) [217]  (5.7 ns)
 
  <State 17>: 5.7ns
 The critical path consists of the following:
-	'fmul' operation ('tmp_38', ./mmult_float.cpp:72) [216]  (5.7 ns)
+	'fmul' operation ('tmp_38', ./mmult_float.cpp:72) [217]  (5.7 ns)
 
  <State 18>: 5.7ns
 The critical path consists of the following:
-	'fmul' operation ('tmp_38', ./mmult_float.cpp:72) [216]  (5.7 ns)
+	'fmul' operation ('tmp_38', ./mmult_float.cpp:72) [217]  (5.7 ns)
 
  <State 19>: 7.26ns
 The critical path consists of the following:
-	'fadd' operation ('tmp', ./mmult_float.cpp:72) [217]  (7.26 ns)
+	'fadd' operation ('tmp', ./mmult_float.cpp:72) [218]  (7.26 ns)
 
  <State 20>: 7.26ns
 The critical path consists of the following:
-	'fadd' operation ('tmp', ./mmult_float.cpp:72) [217]  (7.26 ns)
+	'fadd' operation ('tmp', ./mmult_float.cpp:72) [218]  (7.26 ns)
 
  <State 21>: 7.26ns
 The critical path consists of the following:
-	'fadd' operation ('tmp', ./mmult_float.cpp:72) [217]  (7.26 ns)
+	'fadd' operation ('tmp', ./mmult_float.cpp:72) [218]  (7.26 ns)
 
  <State 22>: 7.26ns
 The critical path consists of the following:
-	'fadd' operation ('tmp', ./mmult_float.cpp:72) [217]  (7.26 ns)
+	'fadd' operation ('tmp', ./mmult_float.cpp:72) [218]  (7.26 ns)
 
  <State 23>: 7.26ns
 The critical path consists of the following:
-	'fadd' operation ('tmp', ./mmult_float.cpp:72) [217]  (7.26 ns)
+	'fadd' operation ('tmp', ./mmult_float.cpp:72) [218]  (7.26 ns)
 
- <State 24>: 3.1ns
+ <State 24>: 3.02ns
 The critical path consists of the following:
-	'phi' operation ('i') with incoming values : ('i', ./mmult_float.cpp:79) [231]  (0 ns)
-	'icmp' operation ('exitcond1', ./mmult_float.cpp:79) [232]  (3.1 ns)
+	'phi' operation ('i') with incoming values : ('i', ./mmult_float.cpp:79) [232]  (0 ns)
+	'icmp' operation ('exitcond1', ./mmult_float.cpp:79) [233]  (3.02 ns)
 
- <State 25>: 6.59ns
+ <State 25>: 6.15ns
 The critical path consists of the following:
-	'phi' operation ('os_idx_1', ./mmult_float.cpp:84) with incoming values : ('os_idx', ./mmult_float.cpp:84) ('tmp_36', ./mmult_float.cpp:84) [247]  (0 ns)
-	'add' operation ('tmp_36', ./mmult_float.cpp:84) [268]  (2.71 ns)
-	'icmp' operation ('last', ./mmult_float.cpp:84) [269]  (3.88 ns)
+	'phi' operation ('j') with incoming values : ('j', ./mmult_float.cpp:80) [249]  (0 ns)
+	'add' operation ('tmp_48', ./mmult_float.cpp:82) [256]  (2.9 ns)
+	'getelementptr' operation ('out_buf_addr', ./mmult_float.cpp:82) [258]  (0 ns)
+	'load' operation ('out_buf_load', ./mmult_float.cpp:82) on array 'out_buf', ./mmult_float.cpp:31 [259]  (3.25 ns)
 
  <State 26>: 3.25ns
 The critical path consists of the following:
-	'load' operation ('out_buf_load', ./mmult_float.cpp:82) on array 'out_buf', ./mmult_float.cpp:31 [258]  (3.25 ns)
+	'load' operation ('out_buf_load', ./mmult_float.cpp:82) on array 'out_buf', ./mmult_float.cpp:31 [259]  (3.25 ns)
 
  <State 27>: 0ns
 The critical path consists of the following:

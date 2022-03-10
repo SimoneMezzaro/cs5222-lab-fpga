@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'mmult_hw'" level="0">
-<item name = "Date">Thu Mar 10 23:15:09 2022
+<item name = "Date">Fri Mar 11 00:23:05 2022
 </item>
 <item name = "Version">2017.1 (Build 1846317 on Fri Apr 14 19:19:38 MDT 2017)</item>
 <item name = "Project">accel</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">4962, 4962, 4963, 4963, none</column>
+<column name="">78370, 78370, 78371, 78371, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -38,10 +38,10 @@
 <column name="- LOAD_OFF_1">5, 5, 2, 1, 1, 5, yes</column>
 <column name="- LOAD_W_1">1310, 1310, 131, -, -, 10, no</column>
 <column name=" + LOAD_W_2">128, 128, 2, 1, 1, 128, yes</column>
-<column name="- LOAD_I_1">1048, 1048, 131, -, -, 8, no</column>
+<column name="- LOAD_I_1">33536, 33536, 131, -, -, 256, no</column>
 <column name=" + LOAD_I_2">128, 128, 2, 1, 1, 128, yes</column>
-<column name="- L1_L2">2550, 2550, 1287, 16, 1, 80, yes</column>
-<column name="- STORE_O_1">41, 41, 7, 5, 1, 8, yes</column>
+<column name="- L1_L2">42230, 42230, 1287, 16, 1, 2560, yes</column>
+<column name="- STORE_O_1">1281, 1281, 7, 5, 1, 256, yes</column>
 </table>
 </item>
 </section>

@@ -41,15 +41,15 @@ set SCTraceFileName "mytrace"
 set SCTraceFileFormat "vcd"
 set SCTraceOption "all"
 set TargetInfo "xc7z020:clg484:-1"
-set SourceFiles {sc {} c {../.././mmult_float.cpp ../../mmult_float.cpp}}
-set SourceFlags {sc {} c {{ } {}}}
+set SourceFiles {sc {} c ../../mmult_float.cpp}
+set SourceFlags {sc {} c {{}}}
 set DirectiveFile {/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution0/solution0.directive}
-set TBFiles {verilog ../../mmult_test.cpp bc ../../mmult_test.cpp sc ../../mmult_test.cpp vhdl ../../mmult_test.cpp c {} cas ../../mmult_test.cpp}
+set TBFiles {verilog ../../mmult_test.cpp bc ../../mmult_test.cpp vhdl ../../mmult_test.cpp sc ../../mmult_test.cpp cas ../../mmult_test.cpp c {}}
 set SpecLanguage "C"
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
-set TBTops {verilog {} bc {} sc {} vhdl {} c {} cas {}}
-set TBInstNames {verilog {} bc {} sc {} vhdl {} c {} cas {}}
+set TBTops {verilog {} bc {} vhdl {} sc {} cas {} c {}}
+set TBInstNames {verilog {} bc {} vhdl {} sc {} cas {} c {}}
 set XDCFiles {}
 set ExtraGlobalOptions {"area_timing" 1 "clock_gate" 1 "impl_flow" map "power_gate" 0}
 set PlatformFiles {{DefaultPlatform {xilinx/zynq/zynq xilinx/zynq/zynq_fpv6}}}

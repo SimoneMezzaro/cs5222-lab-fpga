@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'mmult_hw'" level="0">
-<item name = "Date">Thu Mar 10 19:40:54 2022
+<item name = "Date">Fri Mar 11 00:23:53 2022
 </item>
 <item name = "Version">2017.1 (Build 1846317 on Fri Apr 14 19:19:38 MDT 2017)</item>
 <item name = "Project">accel</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">230331, 230331, 230332, 230332, none</column>
+<column name="">7290147, 7290147, 7290148, 7290148, none</column>
 </table>
 </item>
 <item name = "Detail">
@@ -38,12 +38,12 @@
 <column name="- LOAD_OFF_1">10, 10, 2, -, -, 5, no</column>
 <column name="- LOAD_W_1">2580, 2580, 258, -, -, 10, no</column>
 <column name=" + LOAD_W_2">256, 256, 2, -, -, 128, no</column>
-<column name="- LOAD_I_1">2064, 2064, 258, -, -, 8, no</column>
+<column name="- LOAD_I_1">66048, 66048, 258, -, -, 256, no</column>
 <column name=" + LOAD_I_2">256, 256, 2, -, -, 128, no</column>
-<column name="- L1">225536, 225536, 28192, -, -, 8, no</column>
+<column name="- L1">7217152, 7217152, 28192, -, -, 256, no</column>
 <column name=" + L2">28190, 28190, 2819, -, -, 10, no</column>
 <column name="  ++ L3">2816, 2816, 11, -, -, 256, no</column>
-<column name="- STORE_O_1">136, 136, 17, -, -, 8, no</column>
+<column name="- STORE_O_1">4352, 4352, 17, -, -, 256, no</column>
 <column name=" + STORE_O_2">15, 15, 3, -, -, 5, no</column>
 </table>
 </item>

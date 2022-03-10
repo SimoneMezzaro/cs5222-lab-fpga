@@ -1,48 +1,44 @@
 INFO: [HLS 200-10] Running '/home/simone/Xilinx/Vivado_HLS/2017.1/bin/unwrapped/lnx64.o/vivado_hls'
-INFO: [HLS 200-10] For user 'simone' on host 'simone-vivado' (Linux_x86_64 version 4.4.0-210-generic) on Thu Mar 10 23:14:34 +08 2022
+INFO: [HLS 200-10] For user 'simone' on host 'simone-vivado' (Linux_x86_64 version 4.4.0-210-generic) on Fri Mar 11 00:31:46 +08 2022
 INFO: [HLS 200-10] On os Ubuntu 16.04.7 LTS
 INFO: [HLS 200-10] In directory '/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float'
 INFO: [HLS 200-10] Opening project '/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel'.
 INFO: [HLS 200-10] Adding design file './mmult_float.cpp' to the project
 INFO: [HLS 200-10] Adding test bench file 'mmult_test.cpp' to the project
-INFO: [HLS 200-10] Opening solution '/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution2'.
+INFO: [HLS 200-10] Opening solution '/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/accel/solution3'.
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xc7z020clg484-1'
 INFO: [HLS 200-10] Analyzing design file './mmult_float.cpp' ... 
 INFO: [HLS 200-10] Validating synthesis directives ...
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:17 ; elapsed = 00:00:13 . Memory (MB): peak = 348.102 ; gain = 12.586 ; free physical = 2637 ; free virtual = 12863
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:18 ; elapsed = 00:00:13 . Memory (MB): peak = 348.102 ; gain = 12.586 ; free physical = 2634 ; free virtual = 12862
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 348.105 ; gain = 12.586 ; free physical = 2621 ; free virtual = 12929
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:17 ; elapsed = 00:00:21 . Memory (MB): peak = 348.105 ; gain = 12.586 ; free physical = 2618 ; free virtual = 12929
 INFO: [HLS 200-10] Starting code transformations ...
 INFO: [XFORM 203-603] Inlining function 'pop_stream' into 'mmult_hw' (./mmult_float.cpp:59).
 INFO: [XFORM 203-603] Inlining function 'pop_stream' into 'mmult_hw' (./mmult_float.cpp:48).
 INFO: [XFORM 203-603] Inlining function 'pop_stream' into 'mmult_hw' (./mmult_float.cpp:39).
 INFO: [XFORM 203-603] Inlining function 'push_stream' into 'mmult_hw' (./mmult_float.cpp:84).
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:18 ; elapsed = 00:00:14 . Memory (MB): peak = 348.410 ; gain = 12.895 ; free physical = 2622 ; free virtual = 12852
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 476.102 ; gain = 140.582 ; free physical = 2573 ; free virtual = 12887
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:18 ; elapsed = 00:00:14 . Memory (MB): peak = 348.410 ; gain = 12.895 ; free physical = 2618 ; free virtual = 12849
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:19 ; elapsed = 00:00:25 . Memory (MB): peak = 476.102 ; gain = 140.582 ; free physical = 2568 ; free virtual = 12883
 WARNING: [XFORM 203-1103] Ignored data pack directive on non-struct variable 'out_stream.data.V' (./mmult_float.cpp:8).
 WARNING: [XFORM 203-1103] Ignored data pack directive on non-struct variable 'in_stream.data.V' (./mmult_float.cpp:8).
 INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'L2' (./mmult_float.cpp:68) in function 'mmult_hw' for pipelining.
-INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'STORE_O_1' (./mmult_float.cpp:79) in function 'mmult_hw' for pipelining.
 INFO: [XFORM 203-501] Unrolling loop 'L3' (./mmult_float.cpp:71) in function 'mmult_hw' completely.
-INFO: [XFORM 203-501] Unrolling loop 'STORE_O_2' (./mmult_float.cpp:80) in function 'mmult_hw' completely.
 INFO: [XFORM 203-101] Partitioning array 'weight_buf' (./mmult_float.cpp:29) in dimension 2 with a block factor 8.
 INFO: [XFORM 203-101] Partitioning array 'in_buf' (./mmult_float.cpp:30) in dimension 2 with a block factor 8.
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:19 ; elapsed = 00:00:15 . Memory (MB): peak = 476.098 ; gain = 140.582 ; free physical = 2585 ; free virtual = 12819
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:22 ; elapsed = 00:00:28 . Memory (MB): peak = 476.102 ; gain = 140.582 ; free physical = 2535 ; free virtual = 12852
 WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOAD_W_1' (./mmult_float.cpp:45:42) in function 'mmult_hw' : 
 WARNING: [XFORM 203-542] the outer loop is not a perfect loop.
-WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOAD_I_1' (./mmult_float.cpp:56:78) in function 'mmult_hw' : 
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'LOAD_I_1' (./mmult_float.cpp:56:80) in function 'mmult_hw' : 
 WARNING: [XFORM 203-542] the outer loop is not a perfect loop.
-INFO: [XFORM 203-541] Flattening a loop nest 'L1' (./mmult_float.cpp:66:72) in function 'mmult_hw'.
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:20 ; elapsed = 00:00:16 . Memory (MB): peak = 476.098 ; gain = 140.582 ; free physical = 2580 ; free virtual = 12815
+INFO: [XFORM 203-541] Flattening a loop nest 'L1' (./mmult_float.cpp:66:74) in function 'mmult_hw'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:23 ; elapsed = 00:00:29 . Memory (MB): peak = 476.102 ; gain = 140.582 ; free physical = 2531 ; free virtual = 12850
 INFO: [HLS 200-10] Starting hardware synthesis ...
 INFO: [HLS 200-10] Synthesizing 'mmult_hw' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Implementing module 'mmult_hw' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining loop 'LOAD_OFF_1'.
-INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 2.
 INFO: [SCHED 204-61] Pipelining loop 'LOAD_W_2'.
 INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 2.
 INFO: [SCHED 204-61] Pipelining loop 'LOAD_I_2'.
@@ -50,24 +46,14 @@ INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 2.
 INFO: [SCHED 204-61] Pipelining loop 'L1_L2'.
 WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('in_buf_0_load_2', ./mmult_float.cpp:72) on array 'in_buf[0]', ./mmult_float.cpp:30 due to limited memory ports.
 INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 16, Depth: 1287.
-INFO: [SCHED 204-61] Pipelining loop 'STORE_O_1'.
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
-   between axis write on port 'out_stream_data_V' (./mmult_float.cpp:83) and axis write on port 'out_stream_data_V' (./mmult_float.cpp:83).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1)
-   between axis write on port 'out_stream_data_V' (./mmult_float.cpp:83) and axis write on port 'out_stream_data_V' (./mmult_float.cpp:83).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1)
-   between axis write on port 'out_stream_data_V' (./mmult_float.cpp:83) and axis write on port 'out_stream_data_V' (./mmult_float.cpp:83).
-WARNING: [SCHED 204-68] Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1)
-   between axis write on port 'out_stream_data_V' (./mmult_float.cpp:83) and axis write on port 'out_stream_data_V' (./mmult_float.cpp:83).
-INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 5, Depth: 7.
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 28.36 seconds; current allocated memory: 105.453 MB.
+INFO: [HLS 200-111]  Elapsed time: 41.96 seconds; current allocated memory: 138.014 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 7.54 seconds; current allocated memory: 129.437 MB.
+INFO: [HLS 200-111]  Elapsed time: 7.34 seconds; current allocated memory: 161.744 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [HLS 200-10] -- Generating RTL for module 'mmult_hw' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
@@ -97,17 +83,17 @@ INFO: [SYN 201-210] Renamed object name 'mmult_hw_weight_buf_6' to 'mmult_hw_wei
 INFO: [SYN 201-210] Renamed object name 'mmult_hw_weight_buf_7' to 'mmult_hw_weight_bibs' due to the length limit 20
 INFO: [SYN 201-210] Renamed object name 'mmult_hw_fadd_32ns_32ns_32_5_full_dsp' to 'mmult_hw_fadd_32njbC' due to the length limit 20
 INFO: [SYN 201-210] Renamed object name 'mmult_hw_fmul_32ns_32ns_32_4_max_dsp' to 'mmult_hw_fmul_32nkbM' due to the length limit 20
-INFO: [RTGEN 206-104] Estimated max fanout for 'mmult_hw' is 22016 from HDL expression: ((1'b1 == ap_CS_fsm_pp3_stage4) & (ap_block_pp3_stage4_flag00011001 == 1'b0))
+INFO: [RTGEN 206-104] Estimated max fanout for 'mmult_hw' is 22113 from HDL expression: ((1'b1 == ap_CS_fsm_pp2_stage0) & (ap_block_pp2_stage0_flag00011001 == 1'b0))
 INFO: [RTGEN 206-100] Generating core module 'mmult_hw_fadd_32njbC': 16 instance(s).
 INFO: [RTGEN 206-100] Generating core module 'mmult_hw_fmul_32nkbM': 16 instance(s).
 INFO: [RTGEN 206-100] Finished creating RTL model for 'mmult_hw'.
-INFO: [HLS 200-111]  Elapsed time: 5.13 seconds; current allocated memory: 156.286 MB.
+INFO: [HLS 200-111]  Elapsed time: 5.55 seconds; current allocated memory: 188.250 MB.
 INFO: [RTMG 210-278] Implementing memory 'mmult_hw_offset_buf_ram' using block RAMs.
 INFO: [RTMG 210-278] Implementing memory 'mmult_hw_weight_bbkb_ram' using block RAMs.
 INFO: [RTMG 210-278] Implementing memory 'mmult_hw_in_buf_0_ram' using block RAMs.
 INFO: [RTMG 210-278] Implementing memory 'mmult_hw_out_buf_ram' using block RAMs.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 540.098 ; gain = 204.582 ; free physical = 2433 ; free virtual = 12714
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:51 ; elapsed = 00:01:01 . Memory (MB): peak = 540.102 ; gain = 204.582 ; free physical = 2366 ; free virtual = 12729
 INFO: [SYSC 207-301] Generating SystemC RTL for mmult_hw.
 INFO: [VHDL 208-304] Generating VHDL RTL for mmult_hw.
 INFO: [VLOG 209-307] Generating Verilog RTL for mmult_hw.
-INFO: [HLS 200-112] Total elapsed time: 46.9 seconds; peak allocated memory: 156.286 MB.
+INFO: [HLS 200-112] Total elapsed time: 61.01 seconds; peak allocated memory: 188.250 MB.
