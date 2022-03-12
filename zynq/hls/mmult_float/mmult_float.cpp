@@ -27,7 +27,9 @@ void mmult_hw (AXI_VAL in_stream[IS_SIZE], AXI_VAL out_stream[OS_SIZE])
 	// Hardware buffers
 	T offset_buf[CLASSES];
 	T weight_buf[CLASSES][FEAT];
+	#pragma HLS ARRAY_PARTITION variable=weight_buf block factor=4 dim=2
 	T in_buf[TILE_SIZE][FEAT];
+	#pragma HLS ARRAY_PARTITION variable=in_buf block factor=4 dim=2
 	T out_buf[TILE_SIZE][CLASSES];
 
 	// Input and output AXI stream indices
@@ -36,6 +38,7 @@ void mmult_hw (AXI_VAL in_stream[IS_SIZE], AXI_VAL out_stream[OS_SIZE])
 
 	// Stream in offset vector
 	LOAD_OFF_1: for (int i = 0; i < CLASSES; i+=WIDTH_RATIO) {
+		#pragma HLS PIPELINE II=1
 		converter.packet = pop_stream(in_stream[is_idx++]);
 		offset_buf[i+0] = converter.val.f0;
 		offset_buf[i+1] = converter.val.f1;
@@ -44,6 +47,7 @@ void mmult_hw (AXI_VAL in_stream[IS_SIZE], AXI_VAL out_stream[OS_SIZE])
 	// Stream in weight matrix
 	LOAD_W_1: for (int i = 0; i < CLASSES; i++) {
 		LOAD_W_2: for (int j = 0; j < FEAT; j+=WIDTH_RATIO) {
+			#pragma HLS PIPELINE II=1
 			// Pop AXI data packet
 			converter.packet = pop_stream(in_stream[is_idx++]);
 			weight_buf[i][j+0]  = converter.val.f0;
@@ -57,6 +61,7 @@ void mmult_hw (AXI_VAL in_stream[IS_SIZE], AXI_VAL out_stream[OS_SIZE])
 		// Stream in input tile
 		LOAD_I_1: for (int i = 0; i < TILE_SIZE; i++) {
 			LOAD_I_2: for (int j = 0; j < FEAT; j+=WIDTH_RATIO) {
+				#pragma HLS PIPELINE II=1
 				// Pop AXI data packet
 				converter.packet = pop_stream(in_stream[is_idx++]);
 				in_buf[i][j+0]  = converter.val.f0;
@@ -68,6 +73,7 @@ void mmult_hw (AXI_VAL in_stream[IS_SIZE], AXI_VAL out_stream[OS_SIZE])
 		L1: for (int i = 0; i < TILE_SIZE; i++) {
 			// Iterate over output classes
 			L2: for (int j = 0; j < CLASSES; j++) {
+				#pragma HLS PIPELINE II=1
 				// Perform the dot product
 				T tmp = offset_buf[j];
 				L3: for(int k = 0; k < FEAT; k++) {
@@ -79,6 +85,7 @@ void mmult_hw (AXI_VAL in_stream[IS_SIZE], AXI_VAL out_stream[OS_SIZE])
 
 		// Stream out output tile
 		STORE_O_1: for (int i = 0; i < TILE_SIZE; i++) {
+			#pragma HLS PIPELINE II=1
 			STORE_O_2: for (int j = 0; j < CLASSES; j+=WIDTH_RATIO) {
 				// Push output element into AXI stream
 				converter.val.f0 = out_buf[i][j+0];

@@ -10,7 +10,7 @@ add_files -tb mmult_test.cpp
 open_solution "solution3"
 set_part {xc7z020clg484-1}
 create_clock -period 10 -name default
-source "./accel/solution3/directives.tcl"
+#source "./accel/solution3/directives.tcl"
 csim_design -clean
 csynth_design
 cosim_design
