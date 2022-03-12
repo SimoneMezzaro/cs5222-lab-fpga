@@ -191,3 +191,9 @@ Part E
 +-----------------+---------+-------+--------+-------+
 |Utilization (%)  |       30|     36|      35|     67|
 +-----------------+---------+-------+--------+-------+
+
+Part F
+1) FPGA has a 7.78x speedup
+
+2) CPU accuracy:  13.04% validation error
+   FPGA has a 7.78x speedup
