@@ -2,4 +2,6 @@
 /zynq/build/*
 /zynq/hls/mmult_float/accel/*
 /zynq/hls/mmult_float/vivado_hls.log
+/zynq/hls/mmult_fixed/accel/*
+/zynq/hls/mmult_fixed/vivado_hls.log
 /zynq/hls/vivado_hls.log
