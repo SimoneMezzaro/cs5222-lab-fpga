@@ -1,7 +1,0 @@
-lappend pragmaStatus0 {pragma "PIPELINE" source "/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/./mmult_float.cpp" location "mmult_hw/LOAD_W_2" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
-lappend pragmaStatus1 {pragma "PIPELINE" source "/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/./mmult_float.cpp" location "mmult_hw/LOAD_I_2" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
-lappend pragmaStatus2 {pragma "PIPELINE" source "/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/./mmult_float.cpp" location "mmult_hw/LOAD_OFF_1" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
-lappend pragmaStatus3 {pragma "PIPELINE" source "/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/./mmult_float.cpp" location "mmult_hw/L2" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
-lappend pragmaStatus4 {pragma "ARRAY_PARTITION" source "/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/./mmult_float.cpp" location "mmult_hw" found 1 funcFound 1 applied 1 ambiguous 0 reason "null" variable "weight_buf"}
-lappend pragmaStatus5 {pragma "ARRAY_PARTITION" source "/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/./mmult_float.cpp" location "mmult_hw" found 1 funcFound 1 applied 1 ambiguous 0 reason "null" variable "in_buf"}
-lappend pragmaStatus6 {pragma "PIPELINE" source "/home/simone/Desktop/cs5222-lab-fpga/zynq/hls/mmult_float/./mmult_float.cpp" location "mmult_hw/STORE_O_1" found 1 funcFound 1 applied 1 ambiguous 0 reason "null"}
