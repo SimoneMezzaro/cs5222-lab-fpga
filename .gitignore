@@ -1,0 +1,4 @@
+*~
+/zynq/build/*
+/zynq/hls/mmult_float/accel/*
+/zynq/hls/mmult_float/vivado_hls.log
