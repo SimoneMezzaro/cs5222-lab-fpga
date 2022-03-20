@@ -5,3 +5,4 @@
 /zynq/hls/mmult_fixed/accel/*
 /zynq/hls/mmult_fixed/vivado_hls.log
 /zynq/hls/vivado_hls.log
+/zynq/python/mnist/*
