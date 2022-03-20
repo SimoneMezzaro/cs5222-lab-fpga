@@ -139,7 +139,7 @@ if __name__ == '__main__':
     float_labels = reg.predict(test_data)
 
     # Fixed point computation
-    SCALE = 256
+    SCALE = 510000
     offset = reg.intercept_
     weight = reg.coef_
     offset = np.clip(offset*SCALE, -128, 127)
