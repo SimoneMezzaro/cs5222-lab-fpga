@@ -139,9 +139,7 @@ if __name__ == '__main__':
     float_labels = reg.predict(test_data)
 
     # Fixed point computation
-    # CSE 548: Todo: tweak the SCALE to get less than 20% classification error
-    SCALE = 0
-    # CSE 548 - Change me
+    SCALE = 256
     offset = reg.intercept_
     weight = reg.coef_
     offset = np.clip(offset*SCALE, -128, 127)
