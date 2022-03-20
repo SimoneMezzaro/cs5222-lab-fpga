@@ -197,3 +197,30 @@ Part F
 
 2) CPU accuracy:  13.04% validation error
    FPGA has a 7.78x speedup
+
+PART 2
+1) Fixed-point validation accuracy reported by mnist.py: 82.26%
+2) Design latency: 387707
+3)
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|    129|       -|      -|
+|Expression       |        -|      -|     326|   4518|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        0|      0|    8672|   9184|
+|Memory           |        4|      -|    8192|   2560|
+|Multiplexer      |        -|      -|       -|   8578|
+|Register         |        -|      -|    5100|     96|
++-----------------+---------+-------+--------+-------+
+|Total            |        4|    129|   22290|  24936|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        1|     58|      20|     46|
++-----------------+---------+-------+--------+-------+
+4) Measured speedup: 57.21x
+5) Measured accuracy: 81.49%
+6) Number of multipliers: 127
+7) Initiation interval of L2 loop: 1
+8) Bandwidth limited
