@@ -117,7 +117,7 @@ def parse_args():
                         help='the input data directory')
     parser.add_argument('--num-examples', type=int, default=8,
                         help='the number of training examples')
-    parser.add_argument('--dim', type=int, default=16,
+    parser.add_argument('--dim', type=int, default=8,
                         help='height and width of mnist dataset to resize to')
     parser.add_argument('--debug', action='store_true',
                         help='debug mode')
@@ -139,7 +139,7 @@ if __name__ == '__main__':
     float_labels = reg.predict(test_data)
 
     # Fixed point computation
-    SCALE = 510000
+    SCALE = 2048
     offset = reg.intercept_
     weight = reg.coef_
     offset = np.clip(offset*SCALE, -128, 127)
