@@ -139,9 +139,9 @@ if __name__ == '__main__':
     float_labels = reg.predict(test_data)
 
     # Fixed point computation
-    SCALE = 2048
     offset = reg.intercept_
     weight = reg.coef_
+    SCALE = 255/(weight.max() - weight.min())
     offset = np.clip(offset*SCALE, -128, 127)
     offset = offset.astype(np.int32)
     weight = np.clip(weight*SCALE, -128, 127)
