@@ -140,6 +140,9 @@ if __name__ == '__main__':
     
     # Extract the test dataset
     test_data, test_labels = getDataSet(args, 'test')
+    # Dump test data
+    np.save('test_data', test_data)
+    np.save('test_labels', test_labels)
     # Change test_labels encoding from 1-hot to binary integer
     test_labels = np.where(test_labels==1)[1]
     test_labels = test_labels.reshape((len(test_labels), 1))
@@ -169,6 +172,11 @@ if __name__ == '__main__':
     # Get weights and offsets
     layer = model.get_layer('dense')
     weight = layer.kernel.numpy()
+    transposed_weight = np.ones((10,FEAT))
+    for i in range(len(weight)):
+        for j in range(len(weight[0])):
+            transposed_weight[j][i] = weight[i][j]
+    weight = transposed_weight
     offset = layer.bias.numpy()
 
     # Perform post-training quantization
@@ -182,8 +190,8 @@ if __name__ == '__main__':
     # Perform fixed-point classification
     ones = np.ones(len(test_data)).reshape((len(test_data),1))
     i_p = np.append(ones, test_data, axis=1)
-    w_p = np.append(offset.reshape((1, 10)), weight, axis=0)
-    fixed_labels = np.dot(i_p, w_p)
+    w_p = np.append(offset.reshape(10,1), weight, axis=1)
+    fixed_labels = np.dot(i_p, w_p.T)
 
     fixed_errors = 0
     for idx, label in enumerate(test_labels):
@@ -194,10 +202,8 @@ if __name__ == '__main__':
 
     print ('Fixed point accuracy = ' + '{:.2f}'.format((1 - fixed_errors/len(test_labels))*100) + '%')
 
-    # Dump the model and test data
-    np.save('test_data', test_data)
-    np.save('test_labels', test_labels)
+    # Dump the model
     np.save('model_weights', layer.kernel.numpy().T)
     np.save('model_offsets', layer.bias.numpy())
-    np.save('model_weights_fixed', weight.T)
+    np.save('model_weights_fixed', weight)
     np.save('model_offsets_fixed', offset)
