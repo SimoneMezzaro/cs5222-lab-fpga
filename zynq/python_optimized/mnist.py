@@ -197,7 +197,7 @@ if __name__ == '__main__':
     # Dump the model and test data
     np.save('test_data', test_data)
     np.save('test_labels', test_labels)
-    np.save('model_weights', layer.kernel.numpy())
+    np.save('model_weights', layer.kernel.numpy().T)
     np.save('model_offsets', layer.bias.numpy())
-    np.save('model_weights_fixed', weight)
+    np.save('model_weights_fixed', weight.T)
     np.save('model_offsets_fixed', offset)
