@@ -1,10 +1,14 @@
+from ctypes import sizeof
 import os
 import argparse
 import struct
 import random
 import numpy as np
-from sklearn import linear_model
-from scipy.misc import imresize
+import tempfile
+import tensorflow as tf
+from tensorflow import keras
+import tensorflow_model_optimization as tfmot
+from PIL import Image
 
 # File names
 TRAIN_DAT = 'train-images-idx3-ubyte'
@@ -68,7 +72,7 @@ def getIterator(args, mode):
     get_img = lambda idx: (lbl[idx], img[idx])
 
     # Create an iterator which returns each image in turn
-    for i in xrange(len(lbl)):
+    for i in range(len(lbl)):
         yield get_img(i)
 
 def getDataSet(args, mode):
@@ -92,9 +96,9 @@ def getDataSet(args, mode):
         lab = t[0]
         img = t[1]
         # Resize the image
-        img = imresize(img, (args.dim, args.dim), interp='bilinear')
+        img = Image.fromarray(img).resize(size=(args.dim, args.dim), resample=Image.BILINEAR)
         # Reshape
-        datum = np.divide(img.reshape((args.dim*args.dim,)), 1)
+        datum = np.divide(np.array(img).reshape((args.dim*args.dim,)), 1)
         # Prepare the labels (one-hot encoded)
         label = np.zeros(10)
         label[lab] = 1.0
@@ -103,7 +107,7 @@ def getDataSet(args, mode):
             # Display the image
             show(img)
             # Print label
-            print 'Label: {}'.format(lab)
+            # print 'Label: {}'.format(lab)
 
         data.append(datum)
         labels.append(label)
@@ -126,56 +130,74 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
 
+    FEAT = args.dim * args.dim
+
     # Extract the training dataset
     train_data, train_labels = getDataSet(args, 'train')
-    # Extract the training dataset
+    # Change train_labels encoding from 1-hot to binary integer
+    train_labels = np.where(train_labels==1)[1]
+    train_labels = train_labels.reshape((len(train_labels), 1))
+    
+    # Extract the test dataset
     test_data, test_labels = getDataSet(args, 'test')
+    # Change test_labels encoding from 1-hot to binary integer
+    test_labels = np.where(test_labels==1)[1]
+    test_labels = test_labels.reshape((len(test_labels), 1))
 
-    # Linear regression
-    reg = linear_model.Ridge()
-    reg.fit(train_data, train_labels)
+    # Instantiate neural network model
+    model = keras.Sequential([
+        keras.layers.InputLayer(input_shape=(FEAT)),
+        keras.layers.Dense(units=10, activation='softmax')
+    ])
 
-    # Perform prediction with model
-    float_labels = reg.predict(test_data)
+    model.compile(optimizer='adam',
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
+              metrics=['accuracy'])
 
-    # Fixed point computation
-    SCALE = 16384
-    offset = reg.intercept_
-    weight = reg.coef_
-    offset = np.clip(offset*SCALE, -128, 127)
+    # Train model on the entire train_data
+    model.fit(
+        train_data,
+        train_labels,
+        epochs = 1,
+        validation_split = 0
+    )
+
+    # Perform floating-point classification
+    (loss, accuracy) = model.evaluate(test_data, test_labels)
+    print ('Floating point accuracy = ' + '{:.2f}'.format(accuracy*100) + '%')
+
+    # Get weights and offsets
+    layer = model.get_layer('dense')
+    weight = layer.kernel.numpy()
+    offset = layer.bias.numpy()
+
+    # Perform post-training quantization
+    SCALE = 255/(np.max([weight.max(), offset.max()]) - np.min([weight.min(), offset.min()]))
+    ZERO_POINT = (np.max([weight.max(), offset.max()]) + np.min([weight.min(), offset.min()]))/2
+    offset = np.clip((offset - ZERO_POINT)*SCALE, -128, 127)
     offset = offset.astype(np.int32)
-    weight = np.clip(weight*SCALE, -128, 127)
+    weight = np.clip((weight - ZERO_POINT)*SCALE, -128, 127)
     weight = weight.astype(np.int8)
+
     # Perform fixed-point classification
     ones = np.ones(len(test_data)).reshape((len(test_data),1))
     i_p = np.append(ones, test_data, axis=1)
-    w_p = np.append(offset.reshape(10,1), weight, axis=1)
-    fixed_labels = np.dot(i_p, w_p.T)
+    w_p = np.append(offset.reshape((1, 10)), weight, axis=0)
+    fixed_labels = np.dot(i_p, w_p)
 
-    # Measure Validation Errors
-    float_errors = 0
-    for idx, label in enumerate(test_labels):
-        guess_label = np.argmax(float_labels[idx])
-        actual_label = np.argmax(label)
-        if (guess_label!=actual_label):
-            float_errors += 1.
     fixed_errors = 0
     for idx, label in enumerate(test_labels):
         guess_label = np.argmax(fixed_labels[idx])
-        actual_label = np.argmax(label)
+        actual_label = label
         if (guess_label!=actual_label):
             fixed_errors += 1.
 
-    # Produce stats
-    print 'Min/Max of coefficient values [{}, {}]'.format(reg.coef_.min(), reg.coef_.max())
-    print 'Min/Max of intersect values [{}, {}]'.format(reg.intercept_.min(),reg.intercept_.max())
-    print 'Misclassifications (float) = {0:.2f}%'.format(float_errors/len(test_labels)*100)
-    print 'Misclassifications (fixed) = {0:.2f}%'.format(fixed_errors/len(test_labels)*100)
+    print ('Fixed point accuracy = ' + '{:.2f}'.format((1 - fixed_errors/len(test_labels))*100) + '%')
 
     # Dump the model and test data
     np.save('test_data', test_data)
     np.save('test_labels', test_labels)
-    np.save('model_weights', reg.coef_)
-    np.save('model_offsets', reg.intercept_)
+    np.save('model_weights', layer.kernel.numpy())
+    np.save('model_offsets', layer.bias.numpy())
     np.save('model_weights_fixed', weight)
     np.save('model_offsets_fixed', offset)
