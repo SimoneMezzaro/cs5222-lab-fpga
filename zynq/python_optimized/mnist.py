@@ -153,12 +153,15 @@ if __name__ == '__main__':
         keras.layers.Dense(units=10, activation='softmax')
     ])
 
-    model.compile(optimizer='adam',
+    # Instantiate quantized model
+    quant_model = tfmot.quantization.keras.quantize_model(model)
+    
+    quant_model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
               metrics=['accuracy'])
 
     # Train model on the entire train_data
-    model.fit(
+    quant_model.fit(
         train_data,
         train_labels,
         epochs = 1,
@@ -166,18 +169,18 @@ if __name__ == '__main__':
     )
 
     # Perform floating-point classification
-    (loss, accuracy) = model.evaluate(test_data, test_labels)
-    print ('Floating point accuracy = ' + '{:.2f}'.format(accuracy*100) + '%')
+    # (loss, accuracy) = quant_model.evaluate(test_data, test_labels)
+    # print ('Floating point accuracy = ' + '{:.2f}'.format(accuracy*100) + '%')
 
     # Get weights and offsets
-    layer = model.get_layer('dense')
-    weight = layer.kernel.numpy()
+    layer = quant_model.get_layer('quant_dense').get_weights()
+    weight = layer[0]
     transposed_weight = np.ones((10,FEAT))
     for i in range(len(weight)):
         for j in range(len(weight[0])):
             transposed_weight[j][i] = weight[i][j]
     weight = transposed_weight
-    offset = layer.bias.numpy()
+    offset = layer[1]
 
     # Perform post-training quantization
     SCALE = 255/(np.max([weight.max(), offset.max()]) - np.min([weight.min(), offset.min()]))
@@ -203,7 +206,5 @@ if __name__ == '__main__':
     print ('Fixed point accuracy = ' + '{:.2f}'.format((1 - fixed_errors/len(test_labels))*100) + '%')
 
     # Dump the model
-    np.save('model_weights', layer.kernel.numpy().T)
-    np.save('model_offsets', layer.bias.numpy())
     np.save('model_weights_fixed', weight)
     np.save('model_offsets_fixed', offset)
